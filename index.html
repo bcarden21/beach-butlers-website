@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Butlers - Luxury Beach Concierge | Hilton Head Island</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a2540;
+            --light-navy: #1a3d5c;
+            --gold: #d4af37;
+            --sand: #f4e8d0;
+            --ocean: #4a9fd8;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 70px;
+            width: auto;
+        }
+
+        .footer-logo {
+            height: 100px;
+            width: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ocean);
+        }
+
+        .cta-button {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--navy);
+            color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.9), rgba(74, 159, 216, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a9fd8" width="1200" height="600"/><path fill="%230a2540" opacity="0.1" d="M0 300Q300 200 600 300T1200 300V600H0Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--sand);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .services {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--ocean);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+        }
+
+        .pricing {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid var(--sand);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--white) 0%, var(--sand) 100%);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .package-name {
+            color: var(--navy);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .package-price {
+            color: var(--gold);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .package-period {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .package-features li:before {
+            content: "✓ ";
+            color: var(--ocean);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .booking {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .calendly-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            min-height: 500px;
+        }
+
+        .about {
+            padding: 5rem 2rem;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: var(--gold);
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .contact {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--sand);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--ocean);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--gold);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--ocean);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        .stripe-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="logo.png" alt="Beach Butlers - Hilton Head Island" class="logo">
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#booking" class="cta-button">Reserve Your Setup</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Your Beach Is Ready When You Are</h1>
+        <p class="tagline">Luxury Concierge Beach Service in Singleton Beach, Hilton Head Island</p>
+        <p>Arrive to a perfectly curated beach setup. Leave without lifting a finger. We handle every detail of your oceanfront experience with butler-level service.</p>
+        <a href="#booking" class="cta-button" style="display: inline-block; margin-top: 1rem;">Book Your Experience</a>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">White-Glove Beach Service</h2>
+            <p class="section-subtitle">Everything you need for an effortless day by the ocean</p>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏖️</div>
+                    <h3>Early Morning Placement</h3>
+                    <p>Your beach setup awaits before you arrive. Perfectly positioned umbrellas, chairs, and towels ready for your day.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⛱️</div>
+                    <h3>Daily Setup & Teardown</h3>
+                    <p>Pristine beach arrangements each morning, seamlessly removed each evening. You simply show up and relax.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🧊</div>
+                    <h3>Cooler & Ice Delivery</h3>
+                    <p>Premium coolers stocked with fresh ice delivered directly to your setup. Keep your refreshments perfectly chilled all day.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏄</div>
+                    <h3>Beach Equipment</h3>
+                    <p>Paddleboards, beach games, shade structures, and more. Curated amenities to enhance your beach experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Tailored Packages</h2>
+            <p class="section-subtitle">Select the experience that suits your stay</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="package-name">Essential</h3>
+                    <div class="package-price">$900</div>
+                    <p class="package-period">per week</p>
+                    <ul class="package-features">
+                        <li>1 Tent</li>
+                        <li>4 Adult Chairs</li>
+                        <li>2 Kids Chairs</li>
+                        <li>1 XL Beach Towel</li>
+                        <li>XL Igloo Cooler with Daily Ice</li>
+                        <li>Bluetooth Speaker</li>
+                        <li>Daily Setup & Teardown</li>
+                    </ul>
+                    <button class="cta-button" onclick="handleBooking('Essential', 90000)">Select Package</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3 class="package-name">Premium</h3>
+                    <div class="package-price">$1,600</div>
+                    <p class="package-period">per week</p>
+                    <ul class="package-features">
+                        <li>2 Tents</li>
+                        <li>8 Adult Chairs</li>
+                        <li>4 Kids Chairs</li>
+                        <li>2 XL Beach Towels</li>
+                        <li>XL Igloo Cooler with Daily Ice</li>
+                        <li>Bluetooth Speaker</li>
+                        <li>Daily Setup & Teardown</li>
+                    </ul>
+                    <button class="cta-button" onclick="handleBooking('Premium', 160000)">Select Package</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="package-name">Signature</h3>
+                    <div class="package-price">$2,500</div>
+                    <p class="package-period">per week</p>
+                    <ul class="package-features">
+                        <li>3 Tents</li>
+                        <li>12 Adult Chairs</li>
+                        <li>6 Kids Chairs</li>
+                        <li>3 XL Beach Towels</li>
+                        <li>XL Igloo Cooler with Daily Ice</li>
+                        <li>Bluetooth Speaker</li>
+                        <li>Free Paddleboards & Beach Toys</li>
+                        <li>Daily Setup & Teardown</li>
+                    </ul>
+                    <button class="cta-button" onclick="handleBooking('Signature', 250000)">Select Package</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; background: var(--sand); padding: 3rem; border-radius: 15px;">
+                <h3 style="text-align: center; color: var(--navy); font-size: 2rem; margin-bottom: 1rem;">Create Your Own Package</h3>
+                <p style="text-align: center; color: #666; margin-bottom: 2rem;">Build a custom beach setup tailored to your needs. Select exactly what you want.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px;">
+                        <h4 style="color: var(--navy); margin-bottom: 1rem;">Base Items</h4>
+                        <ul style="list-style: none; color: #666; line-height: 2;">
+                            <li><strong>Tent:</strong> $200/week</li>
+                            <li><strong>Adult Chair:</strong> $18/day</li>
+                            <li><strong>Kids Chair:</strong> $12/day</li>
+                            <li><strong>XL Igloo Cooler w/ Ice:</strong> $25/day</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px;">
+                        <h4 style="color: var(--navy); margin-bottom: 1rem;">Amenities</h4>
+                        <ul style="list-style: none; color: #666; line-height: 2;">
+                            <li><strong>Bluetooth Speaker:</strong> $5/day</li>
+                            <li><strong>XL Beach Towel:</strong> $5/day</li>
+                            <li><strong>Beach Toys/Games:</strong> $10/day</li>
+                            <li><strong>Boogie Board:</strong> $5/day</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="color: #666; margin-bottom: 1rem;"><em>Week packages include 6 beach days</em></p>
+                    <button class="cta-button" onclick="scrollToContact()">Request Custom Quote</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 10px; border-left: 4px solid var(--ocean);">
+                <h4 style="color: var(--navy); margin-bottom: 0.5rem;">Additional Add-Ons Available</h4>
+                <p style="color: #666;">Paddleboards, specialty equipment, and more. Contact us to customize your beach experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">Schedule Your Beach Setup</h2>
+            <p class="section-subtitle">Select your preferred dates and we'll handle the rest</p>
+            
+            <div class="calendly-container">
+                <div style="text-align: center; padding: 3rem;">
+                    <h3 style="color: var(--navy); margin-bottom: 1rem;">Calendly Integration</h3>
+                    <p style="margin-bottom: 2rem;">To activate booking, create a Calendly account and replace the link in the code.</p>
+                    <p style="color: #666; font-size: 0.9rem;">
+                        1. Sign up at <a href="https://calendly.com" target="_blank" style="color: var(--ocean);">calendly.com</a><br>
+                        2. Set your availability<br>
+                        3. Copy your scheduling link<br>
+                        4. Replace placeholder in code
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">Dedicated to Singleton Beach Excellence</h2>
+                <p>Beach Butlers was founded on a simple philosophy: your time at the beach should be spent enjoying the ocean, not hauling equipment or managing logistics.</p>
+                <p>Specializing in the luxury homes of Singleton Beach, we provide homeowners and their guests with seamless, white-glove beach service that elevates every stay. Our team handles every detail with precision and care, ensuring your beach experience is nothing short of extraordinary.</p>
+                <p>From early morning setup to evening teardown, we're the invisible hand that transforms your beach day into an effortless escape.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Questions? Custom requests? We're here to help.</p>
+            
+            <form class="contact-form" onsubmit="handleContact(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <img src="logo.png" alt="Beach Butlers - Hilton Head Island" class="footer-logo">
+            <p>Luxury Beach Concierge Service | Singleton Beach, Hilton Head Island</p>
+            <div class="social-links">
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Facebook">📘</a>
+                <a href="mailto:info@beachbutlershhi.com" title="Email">✉️</a>
+            </div>
+            <p style="margin-top: 2rem; color: var(--sand);">&copy; 2026 Beach Butlers HHI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const stripePublishableKey = 'pk_test_YOUR_KEY_HERE';
+        
+        let stripe;
+        if (stripePublishableKey && stripePublishableKey !== 'pk_test_YOUR_KEY_HERE') {
+            stripe = Stripe(stripePublishableKey);
+        }
+
+        async function handleBooking(packageName, amountInCents) {
+            if (!stripe) {
+                alert(`Great choice! The ${packageName} package is $${amountInCents/100}/week.\n\nPlease scroll down to contact us to complete your booking.`);
+                scrollToContact();
+                return;
+            }
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleContact(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            alert(`Thank you ${name}! We've received your message and will respond to ${email} shortly.`);
+            event.target.reset();
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
