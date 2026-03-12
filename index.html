@@ -698,7 +698,8 @@
             <h2 class="section-title">Get In Touch</h2>
             <p class="section-subtitle">Questions? Custom requests? We're here to help.</p>
             
-            <form class="contact-form" onsubmit="handleContact(event)">
+            <form class="contact-form" name="contact" method="POST" data-netlify="true" onsubmit="handleContact(event)">
+                <input type="hidden" name="form-name" value="contact">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" required>
@@ -846,11 +847,23 @@
 
         function handleContact(event) {
             event.preventDefault();
+            const form = event.target;
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
+            const formData = new FormData(form);
 
-            alert(`Thank you ${name}! We've received your message and will respond to ${email} shortly.`);
-            event.target.reset();
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(function() {
+                alert('Thank you ' + name + '! We\'ve received your message and will respond to ' + email + ' shortly.');
+                form.reset();
+            })
+            .catch(function() {
+                alert('Sorry, there was an error submitting your message. Please try again or email us directly.');
+            });
         }
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
