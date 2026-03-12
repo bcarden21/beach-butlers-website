@@ -905,14 +905,16 @@
             const formattedEnd = new Date(endDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
 
             const paymentLink = squarePaymentLinks[selectedPackage];
+            const bookedPackage = selectedPackage;
+            const bookedPrice = selectedPrice;
 
             closeBookingModal();
 
             // Submit booking details to Netlify Forms for email notification
             var bookingData = new URLSearchParams();
             bookingData.append('form-name', 'booking');
-            bookingData.append('package', selectedPackage);
-            bookingData.append('price', '$' + selectedPrice.toLocaleString());
+            bookingData.append('package', bookedPackage);
+            bookingData.append('price', '$' + bookedPrice.toLocaleString());
             bookingData.append('start-date', formattedStart);
             bookingData.append('end-date', formattedEnd);
             bookingData.append('guest-name', guestName);
@@ -935,10 +937,10 @@
                 window.open(paymentLink, '_blank');
             } else {
                 // Fallback: pre-fill contact form if Square links aren't configured yet
-                alert('Great choice! The ' + selectedPackage + ' package is $' + selectedPrice.toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '') + '\n\nPlease scroll down to contact us to complete your booking.');
+                alert('Great choice! The ' + bookedPackage + ' package is $' + bookedPrice.toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '') + '\n\nPlease scroll down to contact us to complete your booking.');
                 const messageField = document.getElementById('message');
                 if (messageField) {
-                    messageField.value = 'I would like to book the ' + selectedPackage + ' package ($' + selectedPrice.toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '');
+                    messageField.value = 'I would like to book the ' + bookedPackage + ' package ($' + bookedPrice.toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '');
                 }
                 const nameField = document.getElementById('name');
                 if (nameField) {
