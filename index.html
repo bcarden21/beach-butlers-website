@@ -709,22 +709,22 @@
                 <input type="hidden" name="form-name" value="contact">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" required>
+                    <input type="text" id="name" name="name" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="phone">Phone</label>
-                    <input type="tel" id="phone">
+                    <input type="tel" id="phone" name="phone">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" required></textarea>
+                    <textarea id="message" name="message" required></textarea>
                 </div>
                 
                 <button type="submit" class="cta-button">Send Message</button>
@@ -739,11 +739,26 @@
             <div class="social-links">
                 <a href="#" title="Instagram">📷</a>
                 <a href="#" title="Facebook">📘</a>
-                <a href="mailto:info@beachbutlershhi.com" title="Email">✉️</a>
+                <a href="mailto:beachbutlershhi@gmail.com" title="Email">✉️</a>
             </div>
             <p style="margin-top: 2rem; color: var(--sand);">&copy; 2026 Beach Butlers HHI. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Hidden form for Netlify Forms to detect booking submissions -->
+    <form name="booking" method="POST" data-netlify="true" style="display: none;">
+        <input type="hidden" name="form-name" value="booking">
+        <input type="hidden" name="package" value="">
+        <input type="hidden" name="price" value="">
+        <input type="hidden" name="start-date" value="">
+        <input type="hidden" name="end-date" value="">
+        <input type="hidden" name="guest-name" value="">
+        <input type="hidden" name="address" value="">
+        <input type="hidden" name="city" value="">
+        <input type="hidden" name="state" value="">
+        <input type="hidden" name="zip" value="">
+        <input type="hidden" name="phone" value="">
+    </form>
 
     <!-- Booking Date Modal -->
     <div class="booking-modal-overlay" id="bookingModal">
@@ -892,6 +907,28 @@
             const paymentLink = squarePaymentLinks[selectedPackage];
 
             closeBookingModal();
+
+            // Submit booking details to Netlify Forms for email notification
+            var bookingData = new URLSearchParams();
+            bookingData.append('form-name', 'booking');
+            bookingData.append('package', selectedPackage);
+            bookingData.append('price', '$' + selectedPrice.toLocaleString());
+            bookingData.append('start-date', formattedStart);
+            bookingData.append('end-date', formattedEnd);
+            bookingData.append('guest-name', guestName);
+            bookingData.append('address', address);
+            bookingData.append('city', city);
+            bookingData.append('state', state);
+            bookingData.append('zip', zip);
+            bookingData.append('phone', phone);
+
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: bookingData.toString()
+            }).catch(function() {
+                // Silently fail — booking still proceeds to payment
+            });
 
             // Redirect to the Square payment link for the selected package
             if (paymentLink && !paymentLink.includes('YOUR_')) {
