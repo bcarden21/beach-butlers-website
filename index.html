@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach Butlers - Luxury Beach Concierge | Hilton Head Island</title>
-    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Square payment integration -->
     <style>
         * {
             margin: 0;
@@ -379,16 +379,6 @@
             }
         }
 
-        .stripe-notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 2rem;
-            text-align: center;
-            color: #856404;
-        }
-
         /* Booking Date Modal */
         .booking-modal-overlay {
             display: none;
@@ -575,7 +565,7 @@
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3 class="package-name">Essential</h3>
-                    <div class="package-price">$900</div>
+                    <div class="package-price">$1,000</div>
                     <p class="package-period">per week</p>
                     <ul class="package-features">
                         <li>1 Tent</li>
@@ -586,12 +576,12 @@
                         <li>Bluetooth Speaker</li>
                         <li>Daily Setup & Teardown</li>
                     </ul>
-                    <button class="cta-button" onclick="handleBooking('Essential', 90000)">Select Package</button>
+                    <button class="cta-button" onclick="handleBooking('Essential', 1000)">Select Package</button>
                 </div>
                 
                 <div class="pricing-card featured">
                     <h3 class="package-name">Premium</h3>
-                    <div class="package-price">$1,600</div>
+                    <div class="package-price">$1,500</div>
                     <p class="package-period">per week</p>
                     <ul class="package-features">
                         <li>2 Tents</li>
@@ -602,12 +592,12 @@
                         <li>Bluetooth Speaker</li>
                         <li>Daily Setup & Teardown</li>
                     </ul>
-                    <button class="cta-button" onclick="handleBooking('Premium', 160000)">Select Package</button>
+                    <button class="cta-button" onclick="handleBooking('Premium', 1500)">Select Package</button>
                 </div>
                 
                 <div class="pricing-card">
                     <h3 class="package-name">Signature</h3>
-                    <div class="package-price">$2,500</div>
+                    <div class="package-price">$2,000</div>
                     <p class="package-period">per week</p>
                     <ul class="package-features">
                         <li>3 Tents</li>
@@ -619,7 +609,7 @@
                         <li>Free Paddleboards & Beach Toys</li>
                         <li>Daily Setup & Teardown</li>
                     </ul>
-                    <button class="cta-button" onclick="handleBooking('Signature', 250000)">Select Package</button>
+                    <button class="cta-button" onclick="handleBooking('Signature', 2000)">Select Package</button>
                 </div>
             </div>
 
@@ -759,25 +749,26 @@
 
             <div class="modal-actions">
                 <button class="cta-button btn-cancel" onclick="closeBookingModal()">Cancel</button>
-                <button class="cta-button" id="modalConfirmBtn" onclick="confirmBooking()">Continue to Checkout</button>
+                <button class="cta-button" id="modalConfirmBtn" onclick="confirmBooking()">Continue to Payment</button>
             </div>
         </div>
     </div>
 
     <script>
-        const stripePublishableKey = 'pk_test_YOUR_KEY_HERE';
-
-        let stripe;
-        if (stripePublishableKey && stripePublishableKey !== 'pk_test_YOUR_KEY_HERE') {
-            stripe = Stripe(stripePublishableKey);
-        }
+        // Square payment links for each package
+        // Replace these with your actual Square checkout links
+        const squarePaymentLinks = {
+            'Essential': 'https://square.link/u/YOUR_ESSENTIAL_LINK',
+            'Premium': 'https://square.link/u/YOUR_PREMIUM_LINK',
+            'Signature': 'https://square.link/u/YOUR_SIGNATURE_LINK'
+        };
 
         let selectedPackage = null;
-        let selectedAmount = null;
+        let selectedPrice = null;
 
-        function handleBooking(packageName, amountInCents) {
+        function handleBooking(packageName, price) {
             selectedPackage = packageName;
-            selectedAmount = amountInCents;
+            selectedPrice = price;
 
             // Set minimum date to tomorrow
             const tomorrow = new Date();
@@ -787,7 +778,7 @@
             startInput.value = '';
             document.getElementById('bookingEndDate').value = '';
 
-            document.getElementById('modalPackageInfo').textContent = packageName + ' Package — $' + (amountInCents / 100).toLocaleString() + '/week';
+            document.getElementById('modalPackageInfo').textContent = packageName + ' Package — $' + price.toLocaleString() + '/week';
             document.getElementById('bookingModal').classList.add('active');
         }
 
@@ -805,7 +796,7 @@
         function closeBookingModal() {
             document.getElementById('bookingModal').classList.remove('active');
             selectedPackage = null;
-            selectedAmount = null;
+            selectedPrice = null;
         }
 
         // Close modal when clicking the overlay background
@@ -824,21 +815,22 @@
             const formattedStart = new Date(startDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
             const formattedEnd = new Date(endDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
 
+            const paymentLink = squarePaymentLinks[selectedPackage];
+
             closeBookingModal();
 
-            if (!stripe) {
-                alert('Great choice! The ' + selectedPackage + ' package is $' + (selectedAmount / 100).toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\n\nPlease scroll down to contact us to complete your booking.');
-                // Pre-fill contact form message with package & date info
+            // Redirect to the Square payment link for the selected package
+            if (paymentLink && !paymentLink.includes('YOUR_')) {
+                window.open(paymentLink, '_blank');
+            } else {
+                // Fallback: pre-fill contact form if Square links aren't configured yet
+                alert('Great choice! The ' + selectedPackage + ' package is $' + selectedPrice.toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\n\nPlease scroll down to contact us to complete your booking.');
                 const messageField = document.getElementById('message');
                 if (messageField) {
-                    messageField.value = 'I would like to book the ' + selectedPackage + ' package ($' + (selectedAmount / 100).toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd;
+                    messageField.value = 'I would like to book the ' + selectedPackage + ' package ($' + selectedPrice.toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd;
                 }
                 scrollToContact();
-                return;
             }
-
-            // If Stripe is configured, proceed with payment
-            // stripe checkout logic would go here, including startDate and endDate as metadata
         }
 
         function scrollToContact() {
