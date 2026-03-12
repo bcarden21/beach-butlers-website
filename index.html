@@ -356,6 +356,40 @@
             color: var(--ocean);
         }
 
+        .date-select-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .date-select-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--navy);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .date-select-group input[type="date"] {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 2px solid var(--sand);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--navy);
+            background: var(--white);
+            transition: border-color 0.3s;
+        }
+
+        .date-select-group input[type="date"]:focus {
+            outline: none;
+            border-color: var(--ocean);
+        }
+
+        .cta-button.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -454,7 +488,11 @@
                         <li>Bluetooth Speaker</li>
                         <li>Daily Setup & Teardown</li>
                     </ul>
-                    <a href="https://square.link/u/LJdU61pM" class="cta-button" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-align:center;text-decoration:none;">Select Package</a>
+                    <div class="date-select-group">
+                        <label for="essential-date">Select your start date</label>
+                        <input type="date" id="essential-date" onchange="handleEssentialDate(this)">
+                    </div>
+                    <a id="essential-book-btn" href="https://square.link/u/LJdU61pM" class="cta-button disabled" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-align:center;text-decoration:none;">Select Package</a>
                 </div>
                 
                 <div class="pricing-card featured">
@@ -620,6 +658,24 @@
     </footer>
 
     <script>
+        // Set minimum date for Essential package date picker to today
+        (function() {
+            var dateInput = document.getElementById('essential-date');
+            if (dateInput) {
+                var today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
+            }
+        })();
+
+        function handleEssentialDate(input) {
+            var btn = document.getElementById('essential-book-btn');
+            if (input.value) {
+                btn.classList.remove('disabled');
+            } else {
+                btn.classList.add('disabled');
+            }
+        }
+
         function scrollToContact() {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         }
