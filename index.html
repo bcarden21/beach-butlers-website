@@ -388,6 +388,128 @@
             text-align: center;
             color: #856404;
         }
+
+        /* Booking Date Modal */
+        .booking-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 37, 64, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .booking-modal-overlay.active {
+            display: flex;
+        }
+
+        .booking-modal {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2.5rem;
+            max-width: 460px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .booking-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .booking-modal-close:hover {
+            color: var(--navy);
+        }
+
+        .booking-modal h3 {
+            color: var(--navy);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .booking-modal .modal-package-info {
+            color: var(--ocean);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .booking-modal .date-field {
+            margin-bottom: 1.25rem;
+        }
+
+        .booking-modal .date-field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .booking-modal .date-field input[type="date"] {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--sand);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--navy);
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .booking-modal .date-field input[type="date"]:focus {
+            outline: none;
+            border-color: var(--ocean);
+        }
+
+        .booking-modal .date-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .booking-modal .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .booking-modal .modal-actions .cta-button {
+            flex: 1;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .booking-modal .modal-actions .btn-cancel {
+            background: var(--light-gray);
+            color: var(--navy);
+            flex: 0.6;
+        }
+
+        .booking-modal .modal-actions .btn-cancel:hover {
+            background: #e0e0e0;
+            color: var(--navy);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -615,20 +737,107 @@
         </div>
     </footer>
 
+    <!-- Booking Date Modal -->
+    <div class="booking-modal-overlay" id="bookingModal">
+        <div class="booking-modal">
+            <button class="booking-modal-close" onclick="closeBookingModal()">&times;</button>
+            <h3>Select Your Booking Date</h3>
+            <p class="modal-package-info" id="modalPackageInfo"></p>
+
+            <div class="date-field">
+                <label for="bookingStartDate">Start Date</label>
+                <input type="date" id="bookingStartDate" onchange="updateEndDate()">
+            </div>
+
+            <div class="date-field">
+                <label for="bookingEndDate">End Date <span style="font-weight: 400; color: #888;">(6 beach days)</span></label>
+                <input type="date" id="bookingEndDate" readonly>
+            </div>
+
+            <p class="date-note">Your week-long package includes 6 beach days with daily setup and teardown. The end date is calculated automatically.</p>
+
+            <div class="modal-actions">
+                <button class="cta-button btn-cancel" onclick="closeBookingModal()">Cancel</button>
+                <button class="cta-button" id="modalConfirmBtn" onclick="confirmBooking()">Continue to Checkout</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const stripePublishableKey = 'pk_test_YOUR_KEY_HERE';
-        
+
         let stripe;
         if (stripePublishableKey && stripePublishableKey !== 'pk_test_YOUR_KEY_HERE') {
             stripe = Stripe(stripePublishableKey);
         }
 
-        async function handleBooking(packageName, amountInCents) {
+        let selectedPackage = null;
+        let selectedAmount = null;
+
+        function handleBooking(packageName, amountInCents) {
+            selectedPackage = packageName;
+            selectedAmount = amountInCents;
+
+            // Set minimum date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const startInput = document.getElementById('bookingStartDate');
+            startInput.min = tomorrow.toISOString().split('T')[0];
+            startInput.value = '';
+            document.getElementById('bookingEndDate').value = '';
+
+            document.getElementById('modalPackageInfo').textContent = packageName + ' Package — $' + (amountInCents / 100).toLocaleString() + '/week';
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function updateEndDate() {
+            const startDate = document.getElementById('bookingStartDate').value;
+            if (startDate) {
+                const end = new Date(startDate);
+                end.setDate(end.getDate() + 6);
+                document.getElementById('bookingEndDate').value = end.toISOString().split('T')[0];
+            } else {
+                document.getElementById('bookingEndDate').value = '';
+            }
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            selectedPackage = null;
+            selectedAmount = null;
+        }
+
+        // Close modal when clicking the overlay background
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+
+        function confirmBooking() {
+            const startDate = document.getElementById('bookingStartDate').value;
+            if (!startDate) {
+                alert('Please select a start date for your booking.');
+                return;
+            }
+
+            const endDate = document.getElementById('bookingEndDate').value;
+            const formattedStart = new Date(startDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+            const formattedEnd = new Date(endDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+
+            closeBookingModal();
+
             if (!stripe) {
-                alert(`Great choice! The ${packageName} package is $${amountInCents/100}/week.\n\nPlease scroll down to contact us to complete your booking.`);
+                alert('Great choice! The ' + selectedPackage + ' package is $' + (selectedAmount / 100).toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\n\nPlease scroll down to contact us to complete your booking.');
+                // Pre-fill contact form message with package & date info
+                const messageField = document.getElementById('message');
+                if (messageField) {
+                    messageField.value = 'I would like to book the ' + selectedPackage + ' package ($' + (selectedAmount / 100).toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd;
+                }
                 scrollToContact();
                 return;
             }
+
+            // If Stripe is configured, proceed with payment
+            // stripe checkout logic would go here, including startDate and endDate as metadata
         }
 
         function scrollToContact() {
@@ -639,7 +848,7 @@
             event.preventDefault();
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            
+
             alert(`Thank you ${name}! We've received your message and will respond to ${email} shortly.`);
             event.target.reset();
         }
