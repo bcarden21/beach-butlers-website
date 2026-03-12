@@ -401,8 +401,10 @@
             background: var(--white);
             border-radius: 15px;
             padding: 2.5rem;
-            max-width: 460px;
+            max-width: 500px;
             width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             position: relative;
             animation: modalSlideIn 0.3s ease;
@@ -499,6 +501,55 @@
             color: var(--navy);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .booking-modal .address-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--sand);
+        }
+
+        .booking-modal .address-section h4 {
+            color: var(--navy);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .booking-modal .address-field {
+            margin-bottom: 1rem;
+        }
+
+        .booking-modal .address-field label {
+            display: block;
+            margin-bottom: 0.35rem;
+            color: var(--navy);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .booking-modal .address-field input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--sand);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--navy);
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .booking-modal .address-field input:focus {
+            outline: none;
+            border-color: var(--ocean);
+        }
+
+        .booking-modal .address-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .booking-modal .address-row .address-field {
+            flex: 1;
         }
     </style>
 </head>
@@ -747,6 +798,36 @@
 
             <p class="date-note">Your week-long package includes 6 beach days with daily setup and teardown. The end date is calculated automatically.</p>
 
+            <div class="address-section">
+                <h4>Where Are You Staying?</h4>
+                <div class="address-field">
+                    <label for="bookingGuestName">Guest Name</label>
+                    <input type="text" id="bookingGuestName" placeholder="Full name">
+                </div>
+                <div class="address-field">
+                    <label for="bookingAddress">Street Address</label>
+                    <input type="text" id="bookingAddress" placeholder="123 Singleton Beach Rd">
+                </div>
+                <div class="address-row">
+                    <div class="address-field">
+                        <label for="bookingCity">City</label>
+                        <input type="text" id="bookingCity" value="Hilton Head Island">
+                    </div>
+                    <div class="address-field" style="flex: 0.4;">
+                        <label for="bookingState">State</label>
+                        <input type="text" id="bookingState" value="SC">
+                    </div>
+                    <div class="address-field" style="flex: 0.5;">
+                        <label for="bookingZip">Zip</label>
+                        <input type="text" id="bookingZip" placeholder="29928">
+                    </div>
+                </div>
+                <div class="address-field">
+                    <label for="bookingPhone">Phone Number</label>
+                    <input type="tel" id="bookingPhone" placeholder="(555) 555-5555">
+                </div>
+            </div>
+
             <div class="modal-actions">
                 <button class="cta-button btn-cancel" onclick="closeBookingModal()">Cancel</button>
                 <button class="cta-button" id="modalConfirmBtn" onclick="confirmBooking()">Continue to Payment</button>
@@ -777,6 +858,14 @@
             startInput.min = tomorrow.toISOString().split('T')[0];
             startInput.value = '';
             document.getElementById('bookingEndDate').value = '';
+
+            // Reset address fields
+            document.getElementById('bookingGuestName').value = '';
+            document.getElementById('bookingAddress').value = '';
+            document.getElementById('bookingCity').value = 'Hilton Head Island';
+            document.getElementById('bookingState').value = 'SC';
+            document.getElementById('bookingZip').value = '';
+            document.getElementById('bookingPhone').value = '';
 
             document.getElementById('modalPackageInfo').textContent = packageName + ' Package — $' + price.toLocaleString() + '/week';
             document.getElementById('bookingModal').classList.add('active');
@@ -811,7 +900,26 @@
                 return;
             }
 
+            const guestName = document.getElementById('bookingGuestName').value.trim();
+            const address = document.getElementById('bookingAddress').value.trim();
+            const phone = document.getElementById('bookingPhone').value.trim();
+
+            if (!guestName) {
+                alert('Please enter your name.');
+                return;
+            }
+
+            if (!address) {
+                alert('Please enter the street address where you are staying.');
+                return;
+            }
+
             const endDate = document.getElementById('bookingEndDate').value;
+            const city = document.getElementById('bookingCity').value.trim();
+            const state = document.getElementById('bookingState').value.trim();
+            const zip = document.getElementById('bookingZip').value.trim();
+            const fullAddress = address + (city ? ', ' + city : '') + (state ? ', ' + state : '') + (zip ? ' ' + zip : '');
+
             const formattedStart = new Date(startDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
             const formattedEnd = new Date(endDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
 
@@ -824,10 +932,14 @@
                 window.open(paymentLink, '_blank');
             } else {
                 // Fallback: pre-fill contact form if Square links aren't configured yet
-                alert('Great choice! The ' + selectedPackage + ' package is $' + selectedPrice.toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\n\nPlease scroll down to contact us to complete your booking.');
+                alert('Great choice! The ' + selectedPackage + ' package is $' + selectedPrice.toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '') + '\n\nPlease scroll down to contact us to complete your booking.');
                 const messageField = document.getElementById('message');
                 if (messageField) {
-                    messageField.value = 'I would like to book the ' + selectedPackage + ' package ($' + selectedPrice.toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd;
+                    messageField.value = 'I would like to book the ' + selectedPackage + ' package ($' + selectedPrice.toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '');
+                }
+                const nameField = document.getElementById('name');
+                if (nameField) {
+                    nameField.value = guestName;
                 }
                 scrollToContact();
             }
