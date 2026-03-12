@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach Butlers - Luxury Beach Concierge | Hilton Head Island</title>
-    <script src="https://js.stripe.com/v3/"></script>
     <style>
         * {
             margin: 0;
@@ -379,15 +378,6 @@
             }
         }
 
-        .stripe-notice {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 2rem;
-            text-align: center;
-            color: #856404;
-        }
     </style>
 </head>
 <body>
@@ -464,7 +454,7 @@
                         <li>Bluetooth Speaker</li>
                         <li>Daily Setup & Teardown</li>
                     </ul>
-                    <button class="cta-button" onclick="handleBooking('Essential', 90000)">Select Package</button>
+                    <a href="https://square.link/u/LJdU61pM" class="cta-button" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-align:center;text-decoration:none;">Select Package</a>
                 </div>
                 
                 <div class="pricing-card featured">
@@ -480,7 +470,7 @@
                         <li>Bluetooth Speaker</li>
                         <li>Daily Setup & Teardown</li>
                     </ul>
-                    <button class="cta-button" onclick="handleBooking('Premium', 160000)">Select Package</button>
+                    <a href="https://square.link/u/cREBlcRX" class="cta-button" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-align:center;text-decoration:none;">Select Package</a>
                 </div>
                 
                 <div class="pricing-card">
@@ -497,7 +487,7 @@
                         <li>Free Paddleboards & Beach Toys</li>
                         <li>Daily Setup & Teardown</li>
                     </ul>
-                    <button class="cta-button" onclick="handleBooking('Signature', 250000)">Select Package</button>
+                    <a href="https://square.link/u/EaZGeC8E" target="_blank" rel="noopener noreferrer" class="cta-button">Select Package</a>
                 </div>
             </div>
 
@@ -544,17 +534,31 @@
         <div class="container">
             <h2 class="section-title">Schedule Your Beach Setup</h2>
             <p class="section-subtitle">Select your preferred dates and we'll handle the rest</p>
-            
+
             <div class="calendly-container">
-                <div style="text-align: center; padding: 3rem;">
-                    <h3 style="color: var(--navy); margin-bottom: 1rem;">Calendly Integration</h3>
-                    <p style="margin-bottom: 2rem;">To activate booking, create a Calendly account and replace the link in the code.</p>
-                    <p style="color: #666; font-size: 0.9rem;">
-                        1. Sign up at <a href="https://calendly.com" target="_blank" style="color: var(--ocean);">calendly.com</a><br>
-                        2. Set your availability<br>
-                        3. Copy your scheduling link<br>
-                        4. Replace placeholder in code
-                    </p>
+                <div style="text-align: center; padding: 2rem;">
+                    <h3 style="color: var(--navy); margin-bottom: 1rem;">Book Your Beach Experience</h3>
+                    <p style="margin-bottom: 2rem; color: #666;">Choose a package below to reserve your dates, or schedule a consultation to plan your perfect beach setup.</p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 800px; margin: 0 auto 2rem;">
+                        <a href="https://square.link/u/LJdU61pM" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: block; text-align: center; text-decoration: none; padding: 1.25rem 1.5rem;">
+                            <span style="display: block; font-size: 1.1rem;">Essential Package</span>
+                            <span style="display: block; font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">$900/week</span>
+                        </a>
+                        <a href="https://square.link/u/cREBlcRX" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: block; text-align: center; text-decoration: none; padding: 1.25rem 1.5rem; background: var(--navy); color: var(--gold);">
+                            <span style="display: block; font-size: 1.1rem;">Premium Package</span>
+                            <span style="display: block; font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">$1,600/week</span>
+                        </a>
+                        <a href="https://square.link/u/EaZGeC8E" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: block; text-align: center; text-decoration: none; padding: 1.25rem 1.5rem;">
+                            <span style="display: block; font-size: 1.1rem;">Signature Package</span>
+                            <span style="display: block; font-size: 0.9rem; opacity: 0.8; margin-top: 0.25rem;">$2,500/week</span>
+                        </a>
+                    </div>
+
+                    <div style="border-top: 1px solid #eee; padding-top: 2rem; margin-top: 1rem;">
+                        <p style="color: #666; margin-bottom: 1rem;">Need a custom setup or have questions about availability?</p>
+                        <button class="cta-button" onclick="scrollToContact()" style="background: var(--ocean); color: white;">Request Custom Booking</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -616,21 +620,6 @@
     </footer>
 
     <script>
-        const stripePublishableKey = 'pk_test_YOUR_KEY_HERE';
-        
-        let stripe;
-        if (stripePublishableKey && stripePublishableKey !== 'pk_test_YOUR_KEY_HERE') {
-            stripe = Stripe(stripePublishableKey);
-        }
-
-        async function handleBooking(packageName, amountInCents) {
-            if (!stripe) {
-                alert(`Great choice! The ${packageName} package is $${amountInCents/100}/week.\n\nPlease scroll down to contact us to complete your booking.`);
-                scrollToContact();
-                return;
-            }
-        }
-
         function scrollToContact() {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         }
@@ -639,7 +628,7 @@
             event.preventDefault();
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            
+
             alert(`Thank you ${name}! We've received your message and will respond to ${email} shortly.`);
             event.target.reset();
         }
