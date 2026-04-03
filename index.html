@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach Butlers - Luxury Beach Concierge | Hilton Head Island</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Square payment integration -->
     <style>
         * {
@@ -544,11 +546,11 @@
             <img src="logo.png" alt="Beach Butlers - Hilton Head Island" class="logo">
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Book Now</a></li>
+                <li><a href="#packages">Book Now</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#pricing" class="cta-button">Reserve Your Setup</a>
+            <a href="#packages" class="cta-button">Reserve Your Setup</a>
         </nav>
     </header>
 
@@ -556,7 +558,7 @@
         <h1>Effortless Luxury, Delivered to Your Stay</h1>
         <p class="tagline">Private concierge services for Hilton Head's premier vacation homes - from morning coffee and fresh seafood to fully managed beach days.</p>
         <p>Designed for large group stays where no one lifts a finger.</p>
-        <a href="#pricing" class="cta-button" style="display: inline-block; margin-top: 1rem; background: var(--sand); color: var(--navy);">Book Your Experience</a>
+        <a href="#packages" class="cta-button" style="display: inline-block; margin-top: 1rem; background: var(--sand); color: var(--navy);">Book Your Experience</a>
     </section>
 
     <section id="services" class="services">
@@ -598,100 +600,101 @@
         </div>
     </section>
 
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Tailored Packages</h2>
-            <p class="section-subtitle">Select the experience that suits your stay</p>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3 class="package-name">Essential</h3>
-                    <div class="package-price">$900</div>
-                    <p class="package-period">per week</p>
-                    <ul class="package-features">
-                        <li>1 Tent</li>
-                        <li>4 Adult Chairs</li>
-                        <li>2 Kids Chairs</li>
-                        <li>1 XL Beach Towel</li>
-                        <li>XL Igloo Cooler with Daily Ice</li>
-                        <li>Bluetooth Speaker</li>
-                        <li>Optional Beach Concierge Assistance</li>
-                    </ul>
-                    <button class="cta-button" onclick="handleBooking('Essential', 900)">Select Package</button>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <h3 class="package-name">Premium</h3>
-                    <div class="package-price">$1,500</div>
-                    <p class="package-period">per week</p>
-                    <ul class="package-features">
-                        <li>2 Tents</li>
-                        <li>8 Adult Chairs</li>
-                        <li>4 Kids Chairs</li>
-                        <li>2 XL Beach Towels</li>
-                        <li>XL Igloo Cooler with Daily Ice</li>
-                        <li>Bluetooth Speaker</li>
-                        <li>Optional Beach Concierge Assistance</li>
-                    </ul>
-                    <button class="cta-button" onclick="handleBooking('Premium', 1500)">Select Package</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <h3 class="package-name">Signature</h3>
-                    <div class="package-price">$1,950</div>
-                    <p class="package-period">per week</p>
-                    <ul class="package-features">
-                        <li>3 Tents</li>
-                        <li>12 Adult Chairs</li>
-                        <li>6 Kids Chairs</li>
-                        <li>3 XL Beach Towels</li>
-                        <li>XL Igloo Cooler with Daily Ice</li>
-                        <li>Bluetooth Speaker</li>
-                        <li>Free Paddleboards & Beach Toys</li>
-                        <li>Optional Beach Concierge Assistance</li>
-                    </ul>
-                    <button class="cta-button" onclick="handleBooking('Signature', 1950)">Select Package</button>
-                </div>
-            </div>
+<section id="packages" class="py-24 bg-[#E8DCCB]">
+  <div class="max-w-5xl mx-auto px-6">
 
-            <div style="margin-top: 4rem; background: var(--sand); padding: 3rem; border-radius: 15px;">
-                <h3 style="text-align: center; color: var(--navy); font-size: 2rem; margin-bottom: 1rem;">Create Your Own Package</h3>
-                <p style="text-align: center; color: #666; margin-bottom: 2rem;">Build a custom beach setup tailored to your needs. Select exactly what you want.</p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
-                    <div style="background: white; padding: 1.5rem; border-radius: 10px;">
-                        <h4 style="color: var(--navy); margin-bottom: 1rem;">Base Items</h4>
-                        <ul style="list-style: none; color: #666; line-height: 2;">
-                            <li><strong>Tent:</strong> $200/week</li>
-                            <li><strong>Adult Chair:</strong> $18/day</li>
-                            <li><strong>Kids Chair:</strong> $12/day</li>
-                            <li><strong>XL Igloo Cooler w/ Ice:</strong> $25/day</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: white; padding: 1.5rem; border-radius: 10px;">
-                        <h4 style="color: var(--navy); margin-bottom: 1rem;">Amenities</h4>
-                        <ul style="list-style: none; color: #666; line-height: 2;">
-                            <li><strong>Bluetooth Speaker:</strong> $5/day</li>
-                            <li><strong>XL Beach Towel:</strong> $5/day</li>
-                            <li><strong>Beach Toys/Games:</strong> $10/day</li>
-                            <li><strong>Boogie Board:</strong> $5/day</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <h2 class="text-4xl md:text-5xl font-semibold text-[#0A2540]">
+        Concierge Experiences
+      </h2>
+      <p class="mt-4 text-lg text-gray-700 max-w-xl mx-auto">
+        Show up, settle in, and enjoy — we'll handle everything.
+      </p>
+    </div>
 
-                <div style="text-align: center; margin-top: 2rem;">
-                    <p style="color: #666; margin-bottom: 1rem;"><em>Week packages include 6 beach days</em></p>
-                    <button class="cta-button" onclick="scrollToContact()">Request Custom Quote</button>
-                </div>
-            </div>
+    <!-- Cards -->
+    <div class="space-y-12">
 
-            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 10px; border-left: 4px solid var(--ocean);">
-                <h4 style="color: var(--navy); margin-bottom: 0.5rem;">Additional Add-Ons Available</h4>
-                <p style="color: #666;">Paddleboards, specialty equipment, and more. Contact us to customize your beach experience.</p>
-            </div>
+      <!-- 10-15 Guests -->
+      <div class="bg-white rounded-3xl p-10 shadow-md">
+
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-semibold text-[#0A2540]">
+            10–15 Guests
+          </h3>
+          <p class="text-2xl font-semibold text-[#0A2540]">
+            $1,450
+          </p>
         </div>
-    </section>
+
+        <p class="text-gray-600 mb-6">
+          A relaxed, fully handled beach experience for your group — everything ready, every day.
+        </p>
+
+        <ul class="space-y-2 text-gray-700 mb-6">
+          <li>• Chairs, tents & beach mats</li>
+          <li>• Coolers with daily ice</li>
+          <li>• Kids chairs & beach essentials</li>
+          <li>• Coffee coordination ☕</li>
+          <li>• Seafood delivery all week 🦐</li>
+        </ul>
+
+        <p class="text-sm text-gray-600 mb-6">
+          Includes discounted coffee from Barnacle Brews and fresh seafood delivery from Barnacle Bill's.
+        </p>
+
+        <button onclick="handleBooking('10-15 Guests', 1450)" class="inline-block bg-[#0A2540] text-white px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
+          Book Your Beach Butler
+        </button>
+
+      </div>
+
+      <!-- 16-20+ Guests -->
+      <div class="bg-white rounded-3xl p-10 shadow-md border border-[#0A2540]">
+
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-semibold text-[#0A2540]">
+            16–20+ Guests
+          </h3>
+          <p class="text-2xl font-semibold text-[#0A2540]">
+            $1,950
+          </p>
+        </div>
+
+        <p class="text-gray-600 mb-6">
+          Designed for larger groups — more space, more support, and everything taken care of.
+        </p>
+
+        <ul class="space-y-2 text-gray-700 mb-6">
+          <li>• Expanded chairs & shaded areas</li>
+          <li>• Extra coolers & ice daily</li>
+          <li>• Full group beach setup</li>
+          <li>• Enhanced coffee coordination ☕</li>
+          <li>• Priority seafood delivery 🦐</li>
+        </ul>
+
+        <p class="text-sm text-gray-600 mb-6">
+          Preferred access to Barnacle Brews and fresh seafood — delivered and managed throughout your stay.
+        </p>
+
+        <button onclick="handleBooking('16-20+ Guests', 1950)" class="inline-block bg-[#0A2540] text-white px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
+          Book Your Beach Butler
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Booking note -->
+    <div class="text-center mt-16">
+      <p class="text-gray-700">
+        Tell us your dates, address, and group size — we'll take care of the rest and send your secure payment link.
+      </p>
+    </div>
+
+  </div>
+</section>
 
 
     <section id="about" class="about">
@@ -753,11 +756,13 @@
     <!-- Hidden form for Netlify Forms to detect booking submissions -->
     <form name="booking" method="POST" data-netlify="true" style="display: none;">
         <input type="hidden" name="form-name" value="booking">
+        <input type="hidden" name="subject" value="New Beach Butler Booking from %{formName}">
         <input type="hidden" name="package" value="">
         <input type="hidden" name="price" value="">
         <input type="hidden" name="start-date" value="">
         <input type="hidden" name="end-date" value="">
         <input type="hidden" name="guest-name" value="">
+        <input type="hidden" name="email" value="">
         <input type="hidden" name="address" value="">
         <input type="hidden" name="city" value="">
         <input type="hidden" name="state" value="">
@@ -789,6 +794,10 @@
                 <div class="address-field">
                     <label for="bookingGuestName">Guest Name</label>
                     <input type="text" id="bookingGuestName" placeholder="Full name">
+                </div>
+                <div class="address-field">
+                    <label for="bookingEmail">Email</label>
+                    <input type="email" id="bookingEmail" placeholder="your@email.com">
                 </div>
                 <div class="address-field">
                     <label for="bookingAddress">Street Address</label>
@@ -823,11 +832,9 @@
 
     <script>
         // Square payment links for each package
-        // Replace these with your actual Square checkout links
         const squarePaymentLinks = {
-            'Essential': 'https://square.link/u/LJdU61pM',
-            'Premium': 'https://square.link/u/cREBlcRX',
-            'Signature': 'https://square.link/u/EaZGeC8E'
+            '10-15 Guests': 'https://square.link/u/LJdU61pM',
+            '16-20+ Guests': 'https://square.link/u/cREBlcRX'
         };
 
         let selectedPackage = null;
@@ -847,6 +854,7 @@
 
             // Reset address fields
             document.getElementById('bookingGuestName').value = '';
+            document.getElementById('bookingEmail').value = '';
             document.getElementById('bookingAddress').value = '';
             document.getElementById('bookingCity').value = 'Hilton Head Island';
             document.getElementById('bookingState').value = 'SC';
@@ -887,11 +895,17 @@
             }
 
             const guestName = document.getElementById('bookingGuestName').value.trim();
+            const guestEmail = document.getElementById('bookingEmail').value.trim();
             const address = document.getElementById('bookingAddress').value.trim();
             const phone = document.getElementById('bookingPhone').value.trim();
 
             if (!guestName) {
                 alert('Please enter your name.');
+                return;
+            }
+
+            if (!guestEmail) {
+                alert('Please enter your email address.');
                 return;
             }
 
@@ -904,16 +918,12 @@
             const city = document.getElementById('bookingCity').value.trim();
             const state = document.getElementById('bookingState').value.trim();
             const zip = document.getElementById('bookingZip').value.trim();
-            const fullAddress = address + (city ? ', ' + city : '') + (state ? ', ' + state : '') + (zip ? ' ' + zip : '');
 
             const formattedStart = new Date(startDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
             const formattedEnd = new Date(endDate + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
 
-            const paymentLink = squarePaymentLinks[selectedPackage];
             const bookedPackage = selectedPackage;
             const bookedPrice = selectedPrice;
-
-            closeBookingModal();
 
             // Submit booking details to Netlify Forms for email notification
             var bookingData = new URLSearchParams();
@@ -923,11 +933,17 @@
             bookingData.append('start-date', formattedStart);
             bookingData.append('end-date', formattedEnd);
             bookingData.append('guest-name', guestName);
+            bookingData.append('email', guestEmail);
             bookingData.append('address', address);
             bookingData.append('city', city);
             bookingData.append('state', state);
             bookingData.append('zip', zip);
             bookingData.append('phone', phone);
+
+            // Show loading state
+            var confirmBtn = document.getElementById('modalConfirmBtn');
+            confirmBtn.textContent = 'Processing...';
+            confirmBtn.disabled = true;
 
             fetch('/', {
                 method: 'POST',
@@ -938,21 +954,16 @@
             });
 
             // Redirect to the Square payment link for the selected package
-            if (paymentLink && !paymentLink.includes('YOUR_')) {
+            var paymentLink = squarePaymentLinks[bookedPackage];
+            if (paymentLink) {
+                closeBookingModal();
                 window.open(paymentLink, '_blank');
             } else {
-                // Fallback: pre-fill contact form if Square links aren't configured yet
-                alert('Great choice! The ' + bookedPackage + ' package is $' + bookedPrice.toLocaleString() + '/week.\n\nBooking dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '') + '\n\nPlease scroll down to contact us to complete your booking.');
-                const messageField = document.getElementById('message');
-                if (messageField) {
-                    messageField.value = 'I would like to book the ' + bookedPackage + ' package ($' + bookedPrice.toLocaleString() + '/week).\n\nPreferred dates: ' + formattedStart + ' — ' + formattedEnd + '\nGuest: ' + guestName + '\nStaying at: ' + fullAddress + (phone ? '\nPhone: ' + phone : '');
-                }
-                const nameField = document.getElementById('name');
-                if (nameField) {
-                    nameField.value = guestName;
-                }
-                scrollToContact();
+                closeBookingModal();
+                alert('Thank you, ' + guestName + '! Your booking request for the ' + bookedPackage + ' package (' + formattedStart + ' — ' + formattedEnd + ') has been submitted. We will send a secure payment link to ' + guestEmail + ' shortly.');
             }
+            confirmBtn.textContent = 'Continue to Payment';
+            confirmBtn.disabled = false;
         }
 
         function scrollToContact() {
