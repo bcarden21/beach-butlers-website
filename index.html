@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach Butlers - Luxury Beach Concierge | Hilton Head Island</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Square payment integration -->
@@ -23,11 +25,12 @@
             --ocean: #4a9fd8;
             --white: #ffffff;
             --light-gray: #f8f9fa;
+            --coastal-gray: #6B7F8E;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            color: var(--navy);
+            color: var(--coastal-gray);
             line-height: 1.6;
         }
 
@@ -68,18 +71,18 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--navy);
+            color: var(--coastal-gray);
             font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--ocean);
+            color: var(--coastal-gray);
         }
 
         .cta-button {
             background: var(--navy);
-            color: var(--white);
+            color: var(--coastal-gray);
             padding: 0.75rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
@@ -91,7 +94,7 @@
 
         .cta-button:hover {
             background: var(--navy-dark);
-            color: var(--white);
+            color: var(--coastal-gray);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
@@ -99,7 +102,7 @@
         .hero {
             margin-top: 80px;
             background: var(--navy);
-            color: var(--white);
+            color: var(--coastal-gray);
             padding: 8rem 2rem;
             text-align: center;
         }
@@ -113,7 +116,7 @@
         .hero .tagline {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            color: var(--sand);
+            color: var(--coastal-gray);
         }
 
         .hero p {
@@ -136,13 +139,13 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            color: var(--navy);
+            color: var(--coastal-gray);
             margin-bottom: 1rem;
         }
 
         .section-subtitle {
             text-align: center;
-            color: #4B5563;
+            color: var(--coastal-gray);
             font-size: 1.2rem;
             margin-bottom: 3rem;
         }
@@ -173,13 +176,13 @@
         }
 
         .service-card h3 {
-            color: var(--navy);
+            color: var(--coastal-gray);
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
 
         .service-card p {
-            color: #4B5563;
+            color: var(--coastal-gray);
         }
 
         .pricing {
@@ -216,20 +219,20 @@
         }
 
         .package-name {
-            color: var(--navy);
+            color: var(--coastal-gray);
             font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
         .package-price {
-            color: var(--gold);
+            color: var(--coastal-gray);
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .package-period {
-            color: #666;
+            color: var(--coastal-gray);
             margin-bottom: 2rem;
         }
 
@@ -246,7 +249,7 @@
 
         .package-features li:before {
             content: "✓ ";
-            color: var(--ocean);
+            color: var(--coastal-gray);
             font-weight: bold;
             margin-right: 0.5rem;
         }
@@ -255,7 +258,7 @@
         .about {
             padding: 5rem 2rem;
             background: var(--navy);
-            color: var(--white);
+            color: var(--coastal-gray);
         }
 
         .about-content {
@@ -265,7 +268,7 @@
         }
 
         .about h2 {
-            color: var(--gold);
+            color: var(--coastal-gray);
         }
 
         .about p {
@@ -291,7 +294,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--navy);
+            color: var(--coastal-gray);
             font-weight: 500;
         }
 
@@ -318,7 +321,7 @@
 
         footer {
             background: var(--navy);
-            color: var(--white);
+            color: var(--coastal-gray);
             padding: 3rem 2rem;
             text-align: center;
         }
@@ -333,7 +336,7 @@
         }
 
         .social-links a {
-            color: var(--gold);
+            color: var(--coastal-gray);
             margin: 0 1rem;
             font-size: 1.5rem;
             text-decoration: none;
@@ -341,7 +344,7 @@
         }
 
         .social-links a:hover {
-            color: var(--ocean);
+            color: var(--coastal-gray);
         }
 
         @media (max-width: 768px) {
@@ -410,22 +413,22 @@
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #999;
+            color: var(--coastal-gray);
             transition: color 0.3s;
         }
 
         .booking-modal-close:hover {
-            color: var(--navy);
+            color: var(--coastal-gray);
         }
 
         .booking-modal h3 {
-            color: var(--navy);
+            color: var(--coastal-gray);
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
         .booking-modal .modal-package-info {
-            color: var(--ocean);
+            color: var(--coastal-gray);
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
             font-weight: 500;
@@ -438,7 +441,7 @@
         .booking-modal .date-field label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--navy);
+            color: var(--coastal-gray);
             font-weight: 500;
             font-size: 0.95rem;
         }
@@ -449,7 +452,7 @@
             border: 2px solid var(--sand);
             border-radius: 8px;
             font-size: 1rem;
-            color: var(--navy);
+            color: var(--coastal-gray);
             transition: border-color 0.3s;
             font-family: inherit;
         }
@@ -461,7 +464,7 @@
 
         .booking-modal .date-note {
             font-size: 0.85rem;
-            color: #888;
+            color: var(--coastal-gray);
             margin-bottom: 1.5rem;
             line-height: 1.5;
         }
@@ -479,13 +482,13 @@
 
         .booking-modal .modal-actions .btn-cancel {
             background: var(--light-gray);
-            color: var(--navy);
+            color: var(--coastal-gray);
             flex: 0.6;
         }
 
         .booking-modal .modal-actions .btn-cancel:hover {
             background: #e0e0e0;
-            color: var(--navy);
+            color: var(--coastal-gray);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
@@ -497,7 +500,7 @@
         }
 
         .booking-modal .address-section h4 {
-            color: var(--navy);
+            color: var(--coastal-gray);
             font-size: 1.1rem;
             margin-bottom: 1rem;
         }
@@ -509,7 +512,7 @@
         .booking-modal .address-field label {
             display: block;
             margin-bottom: 0.35rem;
-            color: var(--navy);
+            color: var(--coastal-gray);
             font-weight: 500;
             font-size: 0.95rem;
         }
@@ -520,7 +523,7 @@
             border: 2px solid var(--sand);
             border-radius: 8px;
             font-size: 1rem;
-            color: var(--navy);
+            color: var(--coastal-gray);
             transition: border-color 0.3s;
             font-family: inherit;
         }
@@ -540,7 +543,7 @@
         }
     </style>
 </head>
-<body>
+<body class="font-[Inter]">
     <header>
         <nav>
             <img src="logo.png" alt="Beach Butlers - Hilton Head Island" class="logo">
@@ -555,45 +558,45 @@
     </header>
 
     <section class="hero">
-        <h1>Effortless Luxury, Delivered to Your Stay</h1>
+        <h1 class="font-['Playfair_Display']">Effortless Luxury, Delivered to Your Stay</h1>
         <p class="tagline">Private concierge services for Hilton Head's premier vacation homes - from morning coffee and fresh seafood to fully managed beach days.</p>
         <p>Designed for large group stays where no one lifts a finger.</p>
-        <a href="#packages" class="cta-button" style="display: inline-block; margin-top: 1rem; background: var(--sand); color: var(--navy);">Book Your Experience</a>
+        <a href="#packages" class="cta-button" style="display: inline-block; margin-top: 1rem; background: var(--sand); color: var(--coastal-gray);">Book Your Experience</a>
     </section>
 
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">How it Works:</h2>
+            <h2 class="font-['Playfair_Display'] section-title">How it Works:</h2>
             <p class="section-subtitle">Everything you need for an effortless day by the ocean</p>
             
             <div class="service-grid">
                 <div class="service-card">
                     <div class="service-icon">🏖️</div>
-                    <h3>Delivery Before Arrival</h3>
+                    <h3 class="font-['Playfair_Display']">Delivery Before Arrival</h3>
                     <p>We deliver beach equipment to your vacation rental before arrival.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon">⛱️</div>
-                    <h3>Equipment For Your Stay</h3>
+                    <h3 class="font-['Playfair_Display']">Equipment For Your Stay</h3>
                     <p>Equipment remains at the property throughout your stay.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon">🧊</div>
-                    <h3>Cooler & Ice Delivery</h3>
+                    <h3 class="font-['Playfair_Display']">Cooler & Ice Delivery</h3>
                     <p>Premium coolers stocked with fresh ice delivered directly to your setup. Keep your refreshments perfectly chilled all day.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon"><img src="gloves.png" alt="Concierge Gloves" style="width: 3rem; height: 3rem; object-fit: contain;"></div>
-                    <h3>Concierge Assistance</h3>
+                    <h3 class="font-['Playfair_Display']">Concierge Assistance</h3>
                     <p>Optional Concierge assistance available for larger beach gatherings.</p>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon">🏄</div>
-                    <h3>Post-Checkout Collection</h3>
+                    <h3 class="font-['Playfair_Display']">Post-Checkout Collection</h3>
                     <p>We collect equipment after you checkout.</p>
                 </div>
             </div>
@@ -605,10 +608,10 @@
 
     <!-- Header -->
     <div class="text-center mb-20">
-      <h2 class="text-4xl md:text-5xl font-semibold text-[#0A2540]">
+      <h2 class="font-['Playfair_Display'] text-4xl md:text-5xl font-semibold text-[#6B7F8E]">
         Concierge Experiences
       </h2>
-      <p class="mt-4 text-lg text-gray-700 max-w-xl mx-auto">
+      <p class="mt-4 text-lg text-[#6B7F8E] max-w-xl mx-auto">
         Show up, settle in, and enjoy — we'll handle everything.
       </p>
     </div>
@@ -620,19 +623,19 @@
       <div class="bg-white rounded-3xl p-10 shadow-md">
 
         <div class="flex justify-between items-center mb-6">
-          <h3 class="text-2xl font-semibold text-[#0A2540]">
+          <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-[#6B7F8E]">
             10–15 Guests
           </h3>
-          <p class="text-2xl font-semibold text-[#0A2540]">
+          <p class="text-2xl font-semibold text-[#6B7F8E]">
             $1,450
           </p>
         </div>
 
-        <p class="text-gray-600 mb-6">
+        <p class="text-[#6B7F8E] mb-6">
           A relaxed, fully handled beach experience for your group — everything ready, every day.
         </p>
 
-        <ul class="space-y-2 text-gray-700 mb-6">
+        <ul class="space-y-2 text-[#6B7F8E] mb-6">
           <li>• Chairs, tents & beach mats</li>
           <li>• Coolers with daily ice</li>
           <li>• Kids chairs & beach essentials</li>
@@ -640,11 +643,11 @@
           <li>• Seafood delivery all week 🦐</li>
         </ul>
 
-        <p class="text-sm text-gray-600 mb-6">
+        <p class="text-sm text-[#6B7F8E] mb-6">
           Includes discounted coffee from Barnacle Brews and fresh seafood delivery from Barnacle Bill's.
         </p>
 
-        <button onclick="handleBooking('10-15 Guests', 1450)" class="inline-block bg-[#0A2540] text-white px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
+        <button onclick="handleBooking('10-15 Guests', 1450)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
           Book Your Beach Butler
         </button>
 
@@ -654,19 +657,19 @@
       <div class="bg-white rounded-3xl p-10 shadow-md border border-[#0A2540]">
 
         <div class="flex justify-between items-center mb-6">
-          <h3 class="text-2xl font-semibold text-[#0A2540]">
+          <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-[#6B7F8E]">
             16–20+ Guests
           </h3>
-          <p class="text-2xl font-semibold text-[#0A2540]">
+          <p class="text-2xl font-semibold text-[#6B7F8E]">
             $1,950
           </p>
         </div>
 
-        <p class="text-gray-600 mb-6">
+        <p class="text-[#6B7F8E] mb-6">
           Designed for larger groups — more space, more support, and everything taken care of.
         </p>
 
-        <ul class="space-y-2 text-gray-700 mb-6">
+        <ul class="space-y-2 text-[#6B7F8E] mb-6">
           <li>• Expanded chairs & shaded areas</li>
           <li>• Extra coolers & ice daily</li>
           <li>• Full group beach setup</li>
@@ -674,11 +677,11 @@
           <li>• Priority seafood delivery 🦐</li>
         </ul>
 
-        <p class="text-sm text-gray-600 mb-6">
+        <p class="text-sm text-[#6B7F8E] mb-6">
           Preferred access to Barnacle Brews and fresh seafood — delivered and managed throughout your stay.
         </p>
 
-        <button onclick="handleBooking('16-20+ Guests', 1950)" class="inline-block bg-[#0A2540] text-white px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
+        <button onclick="handleBooking('16-20+ Guests', 1950)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
           Book Your Beach Butler
         </button>
 
@@ -688,7 +691,7 @@
 
     <!-- Booking note -->
     <div class="text-center mt-16">
-      <p class="text-gray-700">
+      <p class="text-[#6B7F8E]">
         Tell us your dates, address, and group size — we'll take care of the rest and send your secure payment link.
       </p>
     </div>
@@ -700,7 +703,7 @@
     <section id="about" class="about">
         <div class="container">
             <div class="about-content">
-                <h2 class="section-title">Dedicated to Hilton Head Island Beach Excellence</h2>
+                <h2 class="font-['Playfair_Display'] section-title">Dedicated to Hilton Head Island Beach Excellence</h2>
                 <p>Beach Butlers was founded on a simple philosophy: your time at the beach should be spent enjoying the ocean, not hauling equipment or managing logistics.</p>
                 <p>Specializing in the luxury homes of Singleton Beach, Burkes Beach and Bradley Beach on Hilton Head Island, South Carolina, we provide homeowners and their guests with seamless, white-glove beach service that elevates every stay. Our team handles every detail with precision and care, ensuring your beach experience is nothing short of extraordinary.</p>
                 <p>From early morning setup to evening teardown, we're the invisible hand that transforms your beach day into an effortless escape.</p>
@@ -710,7 +713,7 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="font-['Playfair_Display'] section-title">Get In Touch</h2>
             <p class="section-subtitle">Questions? Custom requests? We're here to help.</p>
             
             <form class="contact-form" name="contact" method="POST" data-netlify="true" onsubmit="handleContact(event)">
@@ -749,7 +752,7 @@
                 <a href="#" title="Facebook">📘</a>
                 <a href="mailto:beachbutlershhi@gmail.com" title="Email">✉️</a>
             </div>
-            <p style="margin-top: 2rem; color: var(--sand);">&copy; 2026 Beach Butlers HHI. All rights reserved.</p>
+            <p style="margin-top: 2rem; color: var(--coastal-gray);">&copy; 2026 Beach Butlers HHI. All rights reserved.</p>
         </div>
     </footer>
 
@@ -774,7 +777,7 @@
     <div class="booking-modal-overlay" id="bookingModal">
         <div class="booking-modal">
             <button class="booking-modal-close" onclick="closeBookingModal()">&times;</button>
-            <h3>Select Your Booking Date</h3>
+            <h3 class="font-['Playfair_Display']">Select Your Booking Date</h3>
             <p class="modal-package-info" id="modalPackageInfo"></p>
 
             <div class="date-field">
@@ -783,7 +786,7 @@
             </div>
 
             <div class="date-field">
-                <label for="bookingEndDate">End Date <span style="font-weight: 400; color: #888;">(6 beach days)</span></label>
+                <label for="bookingEndDate">End Date <span style="font-weight: 400; color: #6B7F8E;">(6 beach days)</span></label>
                 <input type="date" id="bookingEndDate" readonly>
             </div>
 
