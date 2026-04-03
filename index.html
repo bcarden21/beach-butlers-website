@@ -557,11 +557,26 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1 class="font-['Playfair_Display']">Effortless Luxury, Delivered to Your Stay</h1>
-        <p class="tagline">Private concierge services for Hilton Head's premier vacation homes - from morning coffee and fresh seafood to fully managed beach days.</p>
-        <p>Designed for large group stays where no one lifts a finger.</p>
-        <a href="#packages" class="cta-button" style="display: inline-block; margin-top: 1rem; background: var(--sand); color: var(--coastal-gray);">Book Your Experience</a>
+    <section id="hero" class="bg-[#0A2540] text-white py-20 md:py-28 text-center" style="margin-top: 80px;">
+      <div class="max-w-3xl mx-auto px-5">
+
+        <h1 class="text-4xl md:text-6xl font-['Playfair_Display'] mb-6 leading-tight">
+          Relax. We Handle the Rest.
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-300 mb-4">
+          Concierge services for effortless Hilton Head beach stays.
+        </p>
+
+        <p class="text-md text-gray-400 mb-8">
+          Coffee, beach essentials, and fresh seafood — all ready for your stay.
+        </p>
+
+        <a href="#packages" class="w-full md:w-auto inline-block bg-[#E8DCCB] text-[#0A2540] px-8 py-4 rounded-xl font-medium hover:opacity-90 transition">
+          View Concierge Packages
+        </a>
+
+      </div>
     </section>
 
     <section id="services" class="services">
@@ -603,8 +618,8 @@
         </div>
     </section>
 
-<section id="packages" class="py-24 bg-[#E8DCCB]">
-  <div class="max-w-5xl mx-auto px-6">
+<section id="packages" class="py-16 md:py-24 bg-[#E8DCCB]">
+  <div class="max-w-4xl mx-auto px-5">
 
     <!-- Header -->
     <div class="text-center mb-20">
@@ -617,10 +632,10 @@
     </div>
 
     <!-- Cards -->
-    <div class="space-y-12">
+    <div class="space-y-8">
 
       <!-- 10-15 Guests -->
-      <div class="bg-white rounded-3xl p-10 shadow-md">
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-md text-left">
 
         <div class="flex justify-between items-center mb-6">
           <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-[#6B7F8E]">
@@ -647,14 +662,14 @@
           Includes discounted coffee from Barnacle Brews and fresh seafood delivery from Barnacle Bill's.
         </p>
 
-        <button onclick="handleBooking('10-15 Guests', 1450)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base text-center">
+        <button onclick="handleBooking('10-15 Guests', 1450)" class="w-full md:w-auto inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base text-center">
           Book Your Beach Butler
         </button>
 
       </div>
 
       <!-- 16-20+ Guests -->
-      <div class="bg-white rounded-3xl p-10 shadow-md border border-[#0A2540]">
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-md border border-[#0A2540] text-left">
 
         <div class="flex justify-between items-center mb-6">
           <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-[#6B7F8E]">
@@ -681,7 +696,7 @@
           Preferred access to Barnacle Brews and fresh seafood — delivered and managed throughout your stay.
         </p>
 
-        <button onclick="handleBooking('16-20+ Guests', 1950)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base text-center">
+        <button onclick="handleBooking('16-20+ Guests', 1950)" class="w-full md:w-auto inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base text-center">
           Book Your Beach Butler
         </button>
 
@@ -700,8 +715,8 @@
 </section>
 
 
-    <section id="about" class="py-28 bg-[#0A2540] text-white text-center">
-      <div class="max-w-3xl mx-auto px-6">
+    <section id="about" class="py-16 md:py-24 bg-[#0A2540] text-white text-center">
+      <div class="max-w-3xl mx-auto px-5">
         <h2 class="text-4xl md:text-5xl font-['Playfair_Display'] mb-8">
           Your Beach Week, Made Effortless
         </h2>
@@ -724,36 +739,47 @@
     </section>
 
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="font-['Playfair_Display'] section-title">Get In Touch</h2>
-            <p class="section-subtitle">Questions? Custom requests? We're here to help.</p>
-            
-            <form class="contact-form" name="contact" method="POST" data-netlify="true" onsubmit="handleContact(event)">
-                <input type="hidden" name="form-name" value="contact">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-5">
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+        <h2 class="text-3xl font-['Playfair_Display'] text-[#0A2540] mb-6 text-center">
+          Plan Your Stay
+        </h2>
 
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
+        <form action="mailto:beachbutlershhi@gmail.com" method="POST" enctype="text/plain" class="space-y-4">
 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                
-                <button type="submit" class="cta-button">Send Message</button>
-            </form>
-        </div>
+          <input type="text" name="Name" placeholder="Full Name" required class="w-full border p-3 rounded-lg">
+
+          <input type="email" name="Email" placeholder="Email Address" required class="w-full border p-3 rounded-lg">
+
+          <input type="text" name="Address" placeholder="Rental Address" class="w-full border p-3 rounded-lg">
+
+          <input type="text" name="Dates" placeholder="Stay Dates" class="w-full border p-3 rounded-lg">
+
+          <input type="number" name="Guests" placeholder="Number of Guests" class="w-full border p-3 rounded-lg">
+
+          <!-- Chair Selection -->
+          <div>
+            <label class="block text-sm mb-2 text-gray-600">Adult Chairs</label>
+            <input type="number" name="Adult Chairs" min="0" placeholder="Number of adult chairs" class="w-full border p-3 rounded-lg">
+          </div>
+
+          <div>
+            <label class="block text-sm mb-2 text-gray-600">Kids Chairs (Ages 2-6)</label>
+            <input type="number" name="Kids Chairs" min="0" placeholder="Number of kids chairs" class="w-full border p-3 rounded-lg">
+          </div>
+
+          <button type="submit" class="w-full bg-[#0A2540] text-white py-4 rounded-xl font-medium">
+            Request Your Beach Butler
+          </button>
+
+        </form>
+
+        <p class="text-sm text-gray-500 mt-4 text-center">
+          We'll follow up to confirm details and send your secure payment link.
+        </p>
+
+      </div>
     </section>
 
     <footer>
@@ -784,6 +810,8 @@
         <input type="hidden" name="state" value="">
         <input type="hidden" name="zip" value="">
         <input type="hidden" name="phone" value="">
+        <input type="hidden" name="adult-chairs" value="">
+        <input type="hidden" name="kids-chairs" value="">
     </form>
 
     <!-- Booking Date Modal -->
@@ -804,6 +832,20 @@
             </div>
 
             <p class="date-note">Your week-long package includes 6 beach days with Optional Beach Concierge Assistance. The end date is calculated automatically.</p>
+
+            <div class="address-section">
+                <h4>Chair Selection</h4>
+                <div class="address-row">
+                    <div class="address-field">
+                        <label for="bookingAdultChairs">Adult Chairs</label>
+                        <input type="number" id="bookingAdultChairs" min="0" value="0" placeholder="0">
+                    </div>
+                    <div class="address-field">
+                        <label for="bookingKidsChairs">Kids Chairs (Ages 2–6)</label>
+                        <input type="number" id="bookingKidsChairs" min="0" value="0" placeholder="0">
+                    </div>
+                </div>
+            </div>
 
             <div class="address-section">
                 <h4>Where Are You Staying?</h4>
@@ -876,6 +918,8 @@
             document.getElementById('bookingState').value = 'SC';
             document.getElementById('bookingZip').value = '';
             document.getElementById('bookingPhone').value = '';
+            document.getElementById('bookingAdultChairs').value = '0';
+            document.getElementById('bookingKidsChairs').value = '0';
 
             document.getElementById('modalPackageInfo').textContent = packageName + ' Package — $' + price.toLocaleString() + '/week';
             document.getElementById('bookingModal').classList.add('active');
@@ -955,6 +999,8 @@
             bookingData.append('state', state);
             bookingData.append('zip', zip);
             bookingData.append('phone', phone);
+            bookingData.append('adult-chairs', document.getElementById('bookingAdultChairs').value);
+            bookingData.append('kids-chairs', document.getElementById('bookingKidsChairs').value);
 
             // Show loading state
             var confirmBtn = document.getElementById('modalConfirmBtn');
