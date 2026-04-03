@@ -549,6 +549,7 @@
             <img src="logo.png" alt="Beach Butlers - Hilton Head Island" class="logo">
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#packages">Book Now</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -646,7 +647,7 @@
           Includes discounted coffee from Barnacle Brews and fresh seafood delivery from Barnacle Bill's.
         </p>
 
-        <button onclick="handleBooking('10-15 Guests', 1450)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
+        <button onclick="handleBooking('10-15 Guests', 1450)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base text-center">
           Book Your Beach Butler
         </button>
 
@@ -680,7 +681,7 @@
           Preferred access to Barnacle Brews and fresh seafood — delivered and managed throughout your stay.
         </p>
 
-        <button onclick="handleBooking('16-20+ Guests', 1950)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base">
+        <button onclick="handleBooking('16-20+ Guests', 1950)" class="inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base text-center">
           Book Your Beach Butler
         </button>
 
@@ -699,7 +700,7 @@
 </section>
 
 
-    <section class="py-24 bg-[#0A2540] text-white text-center">
+    <section id="about" class="py-24 bg-[#0A2540] text-white text-center">
       <div class="max-w-3xl mx-auto px-6">
         <h2 class="text-4xl md:text-5xl font-['Playfair_Display'] mb-8">
           Your Beach Week, Fully Handled
@@ -758,7 +759,7 @@
     <footer>
         <div class="footer-content">
             <img src="logo.png" alt="Beach Butlers - Hilton Head Island" class="footer-logo">
-            <p>Luxury Beach Concierge Service | Singleton Beach, Burkes Beach & Bradley Beach, Hilton Head Island, SC</p>
+            <p>Luxury Beach Concierge Service | Singleton Beach, Hilton Head Island, SC</p>
             <div class="social-links">
                 <a href="#" title="Instagram">📷</a>
                 <a href="#" title="Facebook">📘</a>
@@ -848,8 +849,8 @@
     <script>
         // Square payment links for each package
         const squarePaymentLinks = {
-            '10-15 Guests': 'https://square.link/u/LJdU61pM',
-            '16-20+ Guests': 'https://square.link/u/cREBlcRX'
+            '10-15 Guests': 'https://square.link/u/cREBlcRX',
+            '16-20+ Guests': 'https://square.link/u/EaZGeC8E'
         };
 
         let selectedPackage = null;
