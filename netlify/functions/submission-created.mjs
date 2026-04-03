@@ -26,6 +26,12 @@ export default async (req) => {
       `City: ${data['city'] || 'N/A'}`,
       `State: ${data['state'] || 'N/A'}`,
       `Zip: ${data['zip'] || 'N/A'}`,
+      `\n--- Chair Selection ---`,
+      `Adult Chairs: ${data['adult-chairs'] || '0'}`,
+      `Kids Chairs: ${data['kids-chairs'] || '0'}`,
+      `\n--- Add-Ons ---`,
+      `Items: ${data['add-ons'] || 'None'}`,
+      `Add-Ons Total: ${data['add-ons-total'] || '$0'}`,
     ].join('\n');
 
     // Use Netlify's built-in email via fetch to Mailgun/Sendgrid if configured,

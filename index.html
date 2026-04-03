@@ -549,8 +549,9 @@
             <img src="logo.png" alt="Beach Butlers - Hilton Head Island" class="logo">
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
+                <li><a href="#packages">Packages</a></li>
+                <li><a href="#add-ons">Add-Ons</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#packages">Book Now</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <a href="#packages" class="cta-button">Reserve Your Beach Essentials</a>
@@ -715,6 +716,113 @@
 </section>
 
 
+<!-- À La Carte Add-Ons Section -->
+<section id="add-ons" class="py-16 md:py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-5">
+
+    <div class="text-center mb-14">
+      <h2 class="font-['Playfair_Display'] text-4xl md:text-5xl font-semibold text-[#0A2540]">
+        À La Carte Add-Ons
+      </h2>
+      <p class="mt-4 text-lg text-[#6B7F8E] max-w-xl mx-auto">
+        Customize your beach week with individual extras — select quantities and add them to your booking.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="addOnsGrid">
+
+      <!-- Speakers -->
+      <div class="bg-[#f8f9fa] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">🔊</div>
+        <h3 class="font-['Playfair_Display'] text-lg font-semibold text-[#0A2540] mb-1">Speakers</h3>
+        <p class="text-sm text-[#6B7F8E] mb-1">Weekly rental</p>
+        <p class="text-xl font-semibold text-[#0A2540] mb-4">$20 <span class="text-sm font-normal text-[#6B7F8E]">/ each</span></p>
+        <div class="flex items-center justify-center gap-3">
+          <button onclick="updateQty('speakers', -1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">−</button>
+          <span id="qty-speakers" class="text-xl font-semibold text-[#0A2540] w-8 text-center">0</span>
+          <button onclick="updateQty('speakers', 1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">+</button>
+        </div>
+      </div>
+
+      <!-- Boogie Boards -->
+      <div class="bg-[#f8f9fa] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">🏄</div>
+        <h3 class="font-['Playfair_Display'] text-lg font-semibold text-[#0A2540] mb-1">Boogie Boards</h3>
+        <p class="text-sm text-[#6B7F8E] mb-1">Weekly rental</p>
+        <p class="text-xl font-semibold text-[#0A2540] mb-4">$10 <span class="text-sm font-normal text-[#6B7F8E]">/ each</span></p>
+        <div class="flex items-center justify-center gap-3">
+          <button onclick="updateQty('boogie-boards', -1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">−</button>
+          <span id="qty-boogie-boards" class="text-xl font-semibold text-[#0A2540] w-8 text-center">0</span>
+          <button onclick="updateQty('boogie-boards', 1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">+</button>
+        </div>
+      </div>
+
+      <!-- Sand Toys -->
+      <div class="bg-[#f8f9fa] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">🏖️</div>
+        <h3 class="font-['Playfair_Display'] text-lg font-semibold text-[#0A2540] mb-1">Sand Toys</h3>
+        <p class="text-sm text-[#6B7F8E] mb-1">Weekly rental</p>
+        <p class="text-xl font-semibold text-[#0A2540] mb-4">$10 <span class="text-sm font-normal text-[#6B7F8E]">/ each</span></p>
+        <div class="flex items-center justify-center gap-3">
+          <button onclick="updateQty('sand-toys', -1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">−</button>
+          <span id="qty-sand-toys" class="text-xl font-semibold text-[#0A2540] w-8 text-center">0</span>
+          <button onclick="updateQty('sand-toys', 1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">+</button>
+        </div>
+      </div>
+
+      <!-- Baby Tents -->
+      <div class="bg-[#f8f9fa] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">⛺</div>
+        <h3 class="font-['Playfair_Display'] text-lg font-semibold text-[#0A2540] mb-1">Baby Tents</h3>
+        <p class="text-sm text-[#6B7F8E] mb-1">Weekly rental</p>
+        <p class="text-xl font-semibold text-[#0A2540] mb-4">$25 <span class="text-sm font-normal text-[#6B7F8E]">/ each</span></p>
+        <div class="flex items-center justify-center gap-3">
+          <button onclick="updateQty('baby-tents', -1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">−</button>
+          <span id="qty-baby-tents" class="text-xl font-semibold text-[#0A2540] w-8 text-center">0</span>
+          <button onclick="updateQty('baby-tents', 1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">+</button>
+        </div>
+      </div>
+
+      <!-- Cornhole Sets -->
+      <div class="bg-[#f8f9fa] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">🎯</div>
+        <h3 class="font-['Playfair_Display'] text-lg font-semibold text-[#0A2540] mb-1">Cornhole Sets</h3>
+        <p class="text-sm text-[#6B7F8E] mb-1">Weekly rental</p>
+        <p class="text-xl font-semibold text-[#0A2540] mb-4">$50 <span class="text-sm font-normal text-[#6B7F8E]">/ each</span></p>
+        <div class="flex items-center justify-center gap-3">
+          <button onclick="updateQty('cornhole-sets', -1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">−</button>
+          <span id="qty-cornhole-sets" class="text-xl font-semibold text-[#0A2540] w-8 text-center">0</span>
+          <button onclick="updateQty('cornhole-sets', 1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">+</button>
+        </div>
+      </div>
+
+      <!-- Extra Cooler with Daily Ice -->
+      <div class="bg-[#f8f9fa] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+        <div class="text-3xl mb-3">🧊</div>
+        <h3 class="font-['Playfair_Display'] text-lg font-semibold text-[#0A2540] mb-1">Extra Cooler</h3>
+        <p class="text-sm text-[#6B7F8E] mb-1">With daily ice</p>
+        <p class="text-xl font-semibold text-[#0A2540] mb-4">$100 <span class="text-sm font-normal text-[#6B7F8E]">/ each</span></p>
+        <div class="flex items-center justify-center gap-3">
+          <button onclick="updateQty('extra-cooler', -1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">−</button>
+          <span id="qty-extra-cooler" class="text-xl font-semibold text-[#0A2540] w-8 text-center">0</span>
+          <button onclick="updateQty('extra-cooler', 1)" class="w-9 h-9 rounded-full bg-[#0A2540] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#081C33] flex items-center justify-center">+</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Add-Ons Total -->
+    <div id="addOnsTotal" class="text-center mt-10 hidden">
+      <div class="inline-block bg-[#E8DCCB] rounded-2xl px-8 py-4">
+        <p class="text-[#6B7F8E] text-sm mb-1">Add-Ons Total</p>
+        <p class="text-2xl font-semibold text-[#0A2540]" id="addOnsTotalPrice">$0</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
     <section id="about" class="py-16 md:py-24 bg-[#0A2540] text-white text-center">
       <div class="max-w-3xl mx-auto px-5">
         <h2 class="text-4xl md:text-5xl font-['Playfair_Display'] mb-8">
@@ -828,6 +936,8 @@
         <input type="hidden" name="phone" value="">
         <input type="hidden" name="adult-chairs" value="">
         <input type="hidden" name="kids-chairs" value="">
+        <input type="hidden" name="add-ons" value="">
+        <input type="hidden" name="add-ons-total" value="">
     </form>
 
     <!-- Booking Date Modal -->
@@ -897,6 +1007,12 @@
                 </div>
             </div>
 
+            <div id="modalAddOnsSummary" class="address-section hidden">
+                <h4>Selected Add-Ons</h4>
+                <div id="modalAddOnsList" style="color: #6B7F8E; font-size: 0.95rem; line-height: 1.8;"></div>
+                <p style="font-weight: 600; color: #0A2540; margin-top: 8px;" id="modalAddOnsTotal"></p>
+            </div>
+
             <div class="modal-actions">
                 <button class="cta-button btn-cancel" onclick="closeBookingModal()">Cancel</button>
                 <button class="cta-button" id="modalConfirmBtn" onclick="confirmBooking()">Continue to Payment</button>
@@ -905,6 +1021,54 @@
     </div>
 
     <script>
+        // Add-on items configuration
+        const addOnItems = {
+            'speakers': { name: 'Speakers', price: 20 },
+            'boogie-boards': { name: 'Boogie Boards', price: 10 },
+            'sand-toys': { name: 'Sand Toys', price: 10 },
+            'baby-tents': { name: 'Baby Tents', price: 25 },
+            'cornhole-sets': { name: 'Cornhole Sets', price: 50 },
+            'extra-cooler': { name: 'Extra Cooler w/ Daily Ice', price: 100 }
+        };
+        const addOnQuantities = {};
+        Object.keys(addOnItems).forEach(function(key) { addOnQuantities[key] = 0; });
+
+        function updateQty(item, delta) {
+            addOnQuantities[item] = Math.max(0, (addOnQuantities[item] || 0) + delta);
+            document.getElementById('qty-' + item).textContent = addOnQuantities[item];
+            updateAddOnsTotal();
+        }
+
+        function getAddOnsTotal() {
+            var total = 0;
+            Object.keys(addOnQuantities).forEach(function(key) {
+                total += addOnQuantities[key] * addOnItems[key].price;
+            });
+            return total;
+        }
+
+        function getAddOnsSummary() {
+            var lines = [];
+            Object.keys(addOnQuantities).forEach(function(key) {
+                if (addOnQuantities[key] > 0) {
+                    lines.push(addOnQuantities[key] + 'x ' + addOnItems[key].name + ' — $' + (addOnQuantities[key] * addOnItems[key].price));
+                }
+            });
+            return lines;
+        }
+
+        function updateAddOnsTotal() {
+            var total = getAddOnsTotal();
+            var totalEl = document.getElementById('addOnsTotal');
+            var priceEl = document.getElementById('addOnsTotalPrice');
+            if (total > 0) {
+                totalEl.classList.remove('hidden');
+                priceEl.textContent = '$' + total;
+            } else {
+                totalEl.classList.add('hidden');
+            }
+        }
+
         // Square payment links for each package
         const squarePaymentLinks = {
             '10-15 Guests': 'https://square.link/u/cREBlcRX',
@@ -938,6 +1102,20 @@
             document.getElementById('bookingKidsChairs').value = '0';
 
             document.getElementById('modalPackageInfo').textContent = packageName + ' Package — $' + price.toLocaleString() + '/week';
+
+            // Show add-ons summary in modal
+            var summary = getAddOnsSummary();
+            var modalSummary = document.getElementById('modalAddOnsSummary');
+            var modalList = document.getElementById('modalAddOnsList');
+            var modalTotal = document.getElementById('modalAddOnsTotal');
+            if (summary.length > 0) {
+                modalList.innerHTML = summary.join('<br>');
+                modalTotal.textContent = 'Add-Ons Total: $' + getAddOnsTotal();
+                modalSummary.classList.remove('hidden');
+            } else {
+                modalSummary.classList.add('hidden');
+            }
+
             document.getElementById('bookingModal').classList.add('active');
         }
 
@@ -1017,6 +1195,8 @@
             bookingData.append('phone', phone);
             bookingData.append('adult-chairs', document.getElementById('bookingAdultChairs').value);
             bookingData.append('kids-chairs', document.getElementById('bookingKidsChairs').value);
+            bookingData.append('add-ons', getAddOnsSummary().join(', ') || 'None');
+            bookingData.append('add-ons-total', '$' + getAddOnsTotal());
 
             // Show loading state
             var confirmBtn = document.getElementById('modalConfirmBtn');
