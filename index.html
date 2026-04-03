@@ -13,10 +13,11 @@
         }
 
         :root {
-            --navy: #0a2540;
+            --navy: #0A2540;
+            --navy-dark: #081C33;
             --light-navy: #1a3d5c;
             --gold: #d4af37;
-            --sand: #f4e8d0;
+            --sand: #E8DCCB;
             --ocean: #4a9fd8;
             --white: #ffffff;
             --light-gray: #f8f9fa;
@@ -75,8 +76,8 @@
         }
 
         .cta-button {
-            background: var(--gold);
-            color: var(--navy);
+            background: var(--navy);
+            color: var(--white);
             padding: 0.75rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
@@ -87,18 +88,15 @@
         }
 
         .cta-button:hover {
-            background: var(--navy);
-            color: var(--gold);
+            background: var(--navy-dark);
+            color: var(--white);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .hero {
             margin-top: 80px;
-            background: linear-gradient(135deg, rgba(10, 37, 64, 0.9), rgba(74, 159, 216, 0.8)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%234a9fd8" width="1200" height="600"/><path fill="%230a2540" opacity="0.1" d="M0 300Q300 200 600 300T1200 300V600H0Z"/></svg>');
-            background-size: cover;
-            background-position: center;
+            background: var(--navy);
             color: var(--white);
             padding: 8rem 2rem;
             text-align: center;
@@ -142,7 +140,7 @@
 
         .section-subtitle {
             text-align: center;
-            color: var(--ocean);
+            color: #4B5563;
             font-size: 1.2rem;
             margin-bottom: 3rem;
         }
@@ -179,12 +177,12 @@
         }
 
         .service-card p {
-            color: #666;
+            color: #4B5563;
         }
 
         .pricing {
             padding: 5rem 2rem;
-            background: var(--white);
+            background: var(--sand);
         }
 
         .pricing-grid {
@@ -201,6 +199,7 @@
             padding: 2.5rem;
             text-align: center;
             transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .pricing-card.featured {
@@ -557,7 +556,7 @@
         <h1>Effortless Luxury, Delivered to Your Stay</h1>
         <p class="tagline">Private concierge services for Hilton Head's premier vacation homes - from morning coffee and fresh seafood to fully managed beach days.</p>
         <p>Designed for large group stays where no one lifts a finger.</p>
-        <a href="#pricing" class="cta-button" style="display: inline-block; margin-top: 1rem;">Book Your Experience</a>
+        <a href="#pricing" class="cta-button" style="display: inline-block; margin-top: 1rem; background: var(--sand); color: var(--navy);">Book Your Experience</a>
     </section>
 
     <section id="services" class="services">
