@@ -570,7 +570,7 @@
         </p>
 
         <p class="text-md text-gray-400 mb-8">
-          Coffee, beach essentials, and fresh seafood — all ready for your stay.
+          Coffee, beach essentials, and fresh seafood - all ready for your stay.
         </p>
 
         <a href="#packages" class="w-full md:w-auto inline-block bg-[#E8DCCB] text-[#0A2540] px-8 py-4 rounded-xl font-medium hover:opacity-90 transition">
@@ -628,7 +628,7 @@
         Concierge Experiences
       </h2>
       <p class="mt-4 text-lg text-[#6B7F8E] max-w-xl mx-auto">
-        Show up, settle in, and enjoy — we'll handle everything.
+        Show up, settle in, and enjoy - we'll handle everything.
       </p>
     </div>
 
@@ -648,7 +648,7 @@
         </div>
 
         <p class="text-[#6B7F8E] mb-6">
-          A relaxed, fully handled beach experience for your group — everything ready, every day.
+          A relaxed, fully handled beach experience for your group - everything ready, every day.
         </p>
 
         <ul class="space-y-2 text-[#6B7F8E] mb-6">
@@ -682,7 +682,7 @@
         </div>
 
         <p class="text-[#6B7F8E] mb-6">
-          Designed for larger groups — more space, more support, and everything taken care of.
+          Designed for larger groups - more space, more support, and everything taken care of.
         </p>
 
         <ul class="space-y-2 text-[#6B7F8E] mb-6">
@@ -694,7 +694,7 @@
         </ul>
 
         <p class="text-sm text-[#6B7F8E] mb-6">
-          Preferred daily coffee pricing from Barnacle Brews Coffee and complimentary seafood delivery from Barnacle Bill's — managed throughout your stay.
+          Preferred daily coffee pricing from Barnacle Brews Coffee and complimentary seafood delivery from Barnacle Bill's - managed throughout your stay.
         </p>
 
         <button onclick="handleBooking('16-20+ Guests', 1950)" class="w-full md:w-auto inline-block bg-[#0A2540] text-[#6B7F8E] px-6 py-3 rounded-lg hover:bg-[#081C33] cursor-pointer border-none font-inherit text-base text-center">
@@ -708,7 +708,7 @@
     <!-- Booking note -->
     <div class="text-center mt-16">
       <p class="text-[#6B7F8E]">
-        Tell us your dates, address, and group size — we'll take care of the rest and send your secure payment link.
+        Tell us your dates, address, and group size - we'll take care of the rest and send your secure payment link.
       </p>
     </div>
 
@@ -725,7 +725,7 @@
         À La Carte Add-Ons
       </h2>
       <p class="mt-4 text-lg text-[#6B7F8E] max-w-xl mx-auto">
-        Customize your beach week with individual extras — select quantities and add them to your booking.
+        Customize your beach week with individual extras - select quantities and add them to your booking.
       </p>
     </div>
 
@@ -829,7 +829,7 @@
           Your Beach Week, Made Effortless
         </h2>
         <p class="text-lg text-gray-300 leading-relaxed mb-6">
-          Beach Butlers provides premium beach equipment and essentials delivered directly to your vacation rental — available for your use throughout your stay.
+          Beach Butlers provides premium beach equipment and essentials delivered directly to your vacation rental - available for your use throughout your stay.
         </p>
         <p class="text-lg text-gray-300 leading-relaxed mb-6">
           Coolers, chairs, tents, and daily ice are all provided for your stay. Coffee coordination and fresh seafood delivery are arranged through our trusted local partners.
@@ -838,7 +838,7 @@
           Optional concierge assistance is available upon request for larger groups who want extra support during their beach days.
         </p>
         <p class="text-lg text-gray-300 leading-relaxed mb-10">
-          This is how a Hilton Head vacation should feel — everything you need, ready when you arrive.
+          This is how a Hilton Head vacation should feel - everything you need, ready when you arrive.
         </p>
         <p class="text-xl font-semibold">
           Relax. Beach Butler's has you covered.
@@ -878,7 +878,7 @@
         </h2>
 
         <p class="text-center text-gray-600 mb-6">
-          Tell us your dates and group size — we'll take care of the rest.
+          Tell us your dates and group size - we'll take care of the rest.
         </p>
 
         <form action="mailto:beachbutlershhi@gmail.com" method="POST" enctype="text/plain" class="space-y-4">
@@ -1051,7 +1051,7 @@
             var lines = [];
             Object.keys(addOnQuantities).forEach(function(key) {
                 if (addOnQuantities[key] > 0) {
-                    lines.push(addOnQuantities[key] + 'x ' + addOnItems[key].name + ' — $' + (addOnQuantities[key] * addOnItems[key].price));
+                    lines.push(addOnQuantities[key] + 'x ' + addOnItems[key].name + ' - $' + (addOnQuantities[key] * addOnItems[key].price));
                 }
             });
             return lines;
@@ -1101,7 +1101,7 @@
             document.getElementById('bookingAdultChairs').value = '0';
             document.getElementById('bookingKidsChairs').value = '0';
 
-            document.getElementById('modalPackageInfo').textContent = packageName + ' Package — $' + price.toLocaleString() + '/week';
+            document.getElementById('modalPackageInfo').textContent = packageName + ' Package - $' + price.toLocaleString() + '/week';
 
             // Show add-ons summary in modal
             var summary = getAddOnsSummary();
@@ -1208,7 +1208,7 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: bookingData.toString()
             }).catch(function() {
-                // Silently fail — booking still proceeds to payment
+                // Silently fail - booking still proceeds to payment
             });
 
             // Redirect to the Square payment link for the selected package
@@ -1218,7 +1218,7 @@
                 window.open(paymentLink, '_blank');
             } else {
                 closeBookingModal();
-                alert('Thank you, ' + guestName + '! Your booking request for the ' + bookedPackage + ' package (' + formattedStart + ' — ' + formattedEnd + ') has been submitted. We will send a secure payment link to ' + guestEmail + ' shortly.');
+                alert('Thank you, ' + guestName + '! Your booking request for the ' + bookedPackage + ' package (' + formattedStart + ' - ' + formattedEnd + ') has been submitted. We will send a secure payment link to ' + guestEmail + ' shortly.');
             }
             confirmBtn.textContent = 'Continue to Payment';
             confirmBtn.disabled = false;
