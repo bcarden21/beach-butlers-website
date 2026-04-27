@@ -985,7 +985,10 @@
           Tell us your dates and group size - we'll take care of the rest.
         </p>
 
-        <form action="mailto:beachbutlershhi@gmail.com" method="POST" enctype="text/plain" class="space-y-4">
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleContact(event)" class="space-y-4">
+
+          <input type="hidden" name="form-name" value="contact">
+          <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
 
           <input type="text" name="Name" placeholder="Full Name" autocomplete="name" required class="w-full border p-3 rounded-lg text-base">
 
@@ -1335,9 +1338,9 @@
         function handleContact(event) {
             event.preventDefault();
             const form = event.target;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
             const formData = new FormData(form);
+            const name = formData.get('Name') || '';
+            const email = formData.get('Email') || '';
 
             fetch('/', {
                 method: 'POST',
@@ -1349,7 +1352,7 @@
                 form.reset();
             })
             .catch(function() {
-                alert('Sorry, there was an error submitting your message. Please try again or email us directly.');
+                alert('Sorry, there was an error submitting your message. Please try again or email us directly at beachbutlershhi@gmail.com.');
             });
         }
 
