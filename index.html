@@ -2,7 +2,10 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#1F4368">
     <title>Beach Butlers - Luxury Beach Concierge | Hilton Head Island</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -46,21 +49,28 @@
         nav {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.75rem 1rem;
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 0.75rem;
         }
 
         .logo {
             height: 140px;
             width: auto;
+            max-width: 60vw;
+            object-fit: contain;
         }
 
         .footer-logo {
             height: 140px;
             width: auto;
+            max-width: 80vw;
             margin-bottom: 1.5rem;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -83,13 +93,19 @@
         .cta-button {
             background: var(--navy);
             color: var(--coastal-gray);
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1.25rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cta-button:hover {
@@ -304,7 +320,7 @@
             padding: 1rem;
             border: 2px solid var(--sand);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
             transition: border-color 0.3s;
         }
 
@@ -352,20 +368,106 @@
                 display: none;
             }
 
+            .logo {
+                height: 80px;
+            }
+
+            .footer-logo {
+                height: 100px;
+            }
+
+            .hero {
+                margin-top: 64px;
+                padding: 4rem 1.25rem;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.25rem;
+                line-height: 1.2;
             }
 
             .hero .tagline {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .services,
+            .pricing,
+            .about,
+            .contact {
+                padding: 3rem 1.25rem;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.85rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .pricing-card {
+                padding: 1.75rem;
             }
 
             .pricing-card.featured {
                 transform: scale(1);
+            }
+
+            footer {
+                padding: 2.5rem 1.25rem;
+                padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+            }
+
+            .booking-modal {
+                padding: 1.5rem 1.25rem;
+                width: 94%;
+                max-height: 92vh;
+                border-radius: 12px;
+            }
+
+            .booking-modal .modal-actions {
+                flex-direction: column-reverse;
+                gap: 0.6rem;
+            }
+
+            .booking-modal .modal-actions .cta-button,
+            .booking-modal .modal-actions .btn-cancel {
+                flex: 1 1 auto;
+                width: 100%;
+            }
+
+            .booking-modal .address-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .booking-modal .address-row .address-field,
+            .booking-modal .address-row .address-field[style] {
+                flex: 1 1 auto !important;
+            }
+        }
+
+        /* iOS / mobile-friendly defaults applied at any width */
+        input, select, textarea {
+            font-size: 16px;
+        }
+
+        button, .cta-button, a.cta-button {
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
             }
         }
 
@@ -451,10 +553,11 @@
             padding: 0.85rem 1rem;
             border: 2px solid var(--sand);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
             color: var(--coastal-gray);
             transition: border-color 0.3s;
             font-family: inherit;
+            min-height: 44px;
         }
 
         .booking-modal .date-field input[type="date"]:focus {
@@ -522,10 +625,11 @@
             padding: 0.85rem 1rem;
             border: 2px solid var(--sand);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px;
             color: var(--coastal-gray);
             transition: border-color 0.3s;
             font-family: inherit;
+            min-height: 44px;
         }
 
         .booking-modal .address-field input:focus {
@@ -558,7 +662,7 @@
         </nav>
     </header>
 
-    <section id="hero" class="bg-[#1F4368] text-white py-20 md:py-28 text-center" style="margin-top: 80px;">
+    <section id="hero" class="bg-[#1F4368] text-white py-16 sm:py-20 md:py-28 text-center mt-[64px] md:mt-20">
       <div class="max-w-3xl mx-auto px-5">
 
         <h1 class="text-4xl md:text-6xl font-['Playfair_Display'] mb-6 leading-tight">
@@ -636,9 +740,9 @@
     <div class="space-y-8">
 
       <!-- 10-15 Guests -->
-      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-md text-left">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-md text-left">
 
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-6">
           <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-[#5A7388]">
             10–15 Guests
           </h3>
@@ -670,9 +774,9 @@
       </div>
 
       <!-- 16-20+ Guests -->
-      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-md border border-[#1F4368] text-left">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-md border border-[#1F4368] text-left">
 
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-6">
           <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-[#5A7388]">
             16–20+ Guests
           </h3>
@@ -738,9 +842,9 @@
         <p class="text-sm text-[#5A7388] mb-1">Weekly rental</p>
         <p class="text-xl font-semibold text-[#1F4368] mb-4">$20 <span class="text-sm font-normal text-[#5A7388]">/ each</span></p>
         <div class="flex items-center justify-center gap-3">
-          <button onclick="updateQty('speakers', -1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">−</button>
+          <button onclick="updateQty('speakers', -1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">−</button>
           <span id="qty-speakers" class="text-xl font-semibold text-[#1F4368] w-8 text-center">0</span>
-          <button onclick="updateQty('speakers', 1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">+</button>
+          <button onclick="updateQty('speakers', 1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">+</button>
         </div>
       </div>
 
@@ -751,9 +855,9 @@
         <p class="text-sm text-[#5A7388] mb-1">Weekly rental</p>
         <p class="text-xl font-semibold text-[#1F4368] mb-4">$10 <span class="text-sm font-normal text-[#5A7388]">/ each</span></p>
         <div class="flex items-center justify-center gap-3">
-          <button onclick="updateQty('boogie-boards', -1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">−</button>
+          <button onclick="updateQty('boogie-boards', -1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">−</button>
           <span id="qty-boogie-boards" class="text-xl font-semibold text-[#1F4368] w-8 text-center">0</span>
-          <button onclick="updateQty('boogie-boards', 1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">+</button>
+          <button onclick="updateQty('boogie-boards', 1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">+</button>
         </div>
       </div>
 
@@ -764,9 +868,9 @@
         <p class="text-sm text-[#5A7388] mb-1">Weekly rental</p>
         <p class="text-xl font-semibold text-[#1F4368] mb-4">$10 <span class="text-sm font-normal text-[#5A7388]">/ each</span></p>
         <div class="flex items-center justify-center gap-3">
-          <button onclick="updateQty('sand-toys', -1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">−</button>
+          <button onclick="updateQty('sand-toys', -1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">−</button>
           <span id="qty-sand-toys" class="text-xl font-semibold text-[#1F4368] w-8 text-center">0</span>
-          <button onclick="updateQty('sand-toys', 1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">+</button>
+          <button onclick="updateQty('sand-toys', 1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">+</button>
         </div>
       </div>
 
@@ -777,9 +881,9 @@
         <p class="text-sm text-[#5A7388] mb-1">Weekly rental</p>
         <p class="text-xl font-semibold text-[#1F4368] mb-4">$25 <span class="text-sm font-normal text-[#5A7388]">/ each</span></p>
         <div class="flex items-center justify-center gap-3">
-          <button onclick="updateQty('baby-tents', -1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">−</button>
+          <button onclick="updateQty('baby-tents', -1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">−</button>
           <span id="qty-baby-tents" class="text-xl font-semibold text-[#1F4368] w-8 text-center">0</span>
-          <button onclick="updateQty('baby-tents', 1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">+</button>
+          <button onclick="updateQty('baby-tents', 1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">+</button>
         </div>
       </div>
 
@@ -790,9 +894,9 @@
         <p class="text-sm text-[#5A7388] mb-1">Weekly rental</p>
         <p class="text-xl font-semibold text-[#1F4368] mb-4">$50 <span class="text-sm font-normal text-[#5A7388]">/ each</span></p>
         <div class="flex items-center justify-center gap-3">
-          <button onclick="updateQty('cornhole-sets', -1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">−</button>
+          <button onclick="updateQty('cornhole-sets', -1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">−</button>
           <span id="qty-cornhole-sets" class="text-xl font-semibold text-[#1F4368] w-8 text-center">0</span>
-          <button onclick="updateQty('cornhole-sets', 1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">+</button>
+          <button onclick="updateQty('cornhole-sets', 1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">+</button>
         </div>
       </div>
 
@@ -803,9 +907,9 @@
         <p class="text-sm text-[#5A7388] mb-1">With daily ice</p>
         <p class="text-xl font-semibold text-[#1F4368] mb-4">$100 <span class="text-sm font-normal text-[#5A7388]">/ each</span></p>
         <div class="flex items-center justify-center gap-3">
-          <button onclick="updateQty('extra-cooler', -1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">−</button>
+          <button onclick="updateQty('extra-cooler', -1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">−</button>
           <span id="qty-extra-cooler" class="text-xl font-semibold text-[#1F4368] w-8 text-center">0</span>
-          <button onclick="updateQty('extra-cooler', 1)" class="w-9 h-9 rounded-full bg-[#1F4368] text-white text-lg font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center">+</button>
+          <button onclick="updateQty('extra-cooler', 1)" class="w-11 h-11 rounded-full bg-[#1F4368] text-white text-xl font-bold cursor-pointer border-none hover:bg-[#14304B] flex items-center justify-center select-none touch-manipulation">+</button>
         </div>
       </div>
 
@@ -883,15 +987,15 @@
 
         <form action="mailto:beachbutlershhi@gmail.com" method="POST" enctype="text/plain" class="space-y-4">
 
-          <input type="text" name="Name" placeholder="Full Name" required class="w-full border p-3 rounded-lg">
+          <input type="text" name="Name" placeholder="Full Name" autocomplete="name" required class="w-full border p-3 rounded-lg text-base">
 
-          <input type="email" name="Email" placeholder="Email Address" required class="w-full border p-3 rounded-lg">
+          <input type="email" name="Email" placeholder="Email Address" autocomplete="email" inputmode="email" required class="w-full border p-3 rounded-lg text-base">
 
-          <input type="text" name="Address" placeholder="Rental Address" class="w-full border p-3 rounded-lg">
+          <input type="text" name="Address" placeholder="Rental Address" autocomplete="street-address" class="w-full border p-3 rounded-lg text-base">
 
-          <input type="text" name="Dates" placeholder="Stay Dates" class="w-full border p-3 rounded-lg">
+          <input type="text" name="Dates" placeholder="Stay Dates" class="w-full border p-3 rounded-lg text-base">
 
-          <input type="number" name="Guests" placeholder="Number of Guests" class="w-full border p-3 rounded-lg">
+          <input type="number" name="Guests" placeholder="Number of Guests" inputmode="numeric" min="1" class="w-full border p-3 rounded-lg text-base">
 
 <button type="submit" class="w-full bg-[#1F4368] text-white py-4 rounded-xl font-medium">
             Check Availability
@@ -964,11 +1068,11 @@
                 <div class="address-row">
                     <div class="address-field">
                         <label for="bookingAdultChairs">Adult Chairs</label>
-                        <input type="number" id="bookingAdultChairs" min="0" value="0" placeholder="0">
+                        <input type="number" id="bookingAdultChairs" min="0" inputmode="numeric" value="0" placeholder="0">
                     </div>
                     <div class="address-field">
                         <label for="bookingKidsChairs">Kids Chairs (Ages 2–6)</label>
-                        <input type="number" id="bookingKidsChairs" min="0" value="0" placeholder="0">
+                        <input type="number" id="bookingKidsChairs" min="0" inputmode="numeric" value="0" placeholder="0">
                     </div>
                 </div>
             </div>
@@ -977,33 +1081,33 @@
                 <h4>Where Are You Staying?</h4>
                 <div class="address-field">
                     <label for="bookingGuestName">Guest Name</label>
-                    <input type="text" id="bookingGuestName" placeholder="Full name">
+                    <input type="text" id="bookingGuestName" autocomplete="name" placeholder="Full name">
                 </div>
                 <div class="address-field">
                     <label for="bookingEmail">Email</label>
-                    <input type="email" id="bookingEmail" placeholder="your@email.com">
+                    <input type="email" id="bookingEmail" autocomplete="email" inputmode="email" placeholder="your@email.com">
                 </div>
                 <div class="address-field">
                     <label for="bookingAddress">Street Address</label>
-                    <input type="text" id="bookingAddress" placeholder="123 Singleton Beach Rd">
+                    <input type="text" id="bookingAddress" autocomplete="street-address" placeholder="123 Singleton Beach Rd">
                 </div>
                 <div class="address-row">
                     <div class="address-field">
                         <label for="bookingCity">City</label>
-                        <input type="text" id="bookingCity" value="Hilton Head Island">
+                        <input type="text" id="bookingCity" autocomplete="address-level2" value="Hilton Head Island">
                     </div>
                     <div class="address-field" style="flex: 0.4;">
                         <label for="bookingState">State</label>
-                        <input type="text" id="bookingState" value="SC">
+                        <input type="text" id="bookingState" autocomplete="address-level1" value="SC">
                     </div>
                     <div class="address-field" style="flex: 0.5;">
                         <label for="bookingZip">Zip</label>
-                        <input type="text" id="bookingZip" placeholder="29928">
+                        <input type="text" id="bookingZip" autocomplete="postal-code" inputmode="numeric" placeholder="29928">
                     </div>
                 </div>
                 <div class="address-field">
                     <label for="bookingPhone">Phone Number</label>
-                    <input type="tel" id="bookingPhone" placeholder="(555) 555-5555">
+                    <input type="tel" id="bookingPhone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555">
                 </div>
             </div>
 
