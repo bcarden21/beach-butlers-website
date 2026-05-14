@@ -662,22 +662,26 @@
         </nav>
     </header>
 
-    <section id="hero" class="bg-[#1F4368] text-white py-16 sm:py-20 md:py-28 text-center mt-[64px] md:mt-20">
-      <div class="max-w-3xl mx-auto px-5">
+    <section id="hero" class="relative text-white py-24 sm:py-32 md:py-40 text-center mt-[64px] md:mt-20 overflow-hidden">
+      <div class="absolute inset-0">
+        <img src="hero-beach.jpeg" alt="Boardwalk leading to a beach setup on Hilton Head Island" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-[#1F4368]/60"></div>
+      </div>
+      <div class="relative max-w-3xl mx-auto px-5">
 
-        <h1 class="text-4xl md:text-6xl font-['Playfair_Display'] mb-6 leading-tight">
+        <h1 class="text-4xl md:text-6xl font-['Playfair_Display'] mb-6 leading-tight drop-shadow-lg">
           Arrive. Unwind. We'll Take It From Here.
         </h1>
 
-        <p class="text-lg md:text-xl text-gray-300 mb-4">
+        <p class="text-lg md:text-xl text-gray-200 mb-4 drop-shadow">
           Concierge services designed for large-group beach stays on Hilton Head.
         </p>
 
-        <p class="text-md text-gray-400 mb-8">
+        <p class="text-md text-gray-300 mb-8 drop-shadow">
           Coffee, beach essentials, and fresh seafood - all ready for your stay.
         </p>
 
-        <a href="#packages" class="w-full md:w-auto inline-block bg-[#B8D4E8] text-[#1F4368] px-8 py-4 rounded-xl font-medium hover:opacity-90 transition">
+        <a href="#packages" class="w-full md:w-auto inline-block bg-[#B8D4E8] text-[#1F4368] px-8 py-4 rounded-xl font-medium hover:opacity-90 transition shadow-lg">
           View Concierge Packages
         </a>
 
