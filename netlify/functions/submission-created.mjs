@@ -32,6 +32,8 @@ export default async (req) => {
       `\n--- Add-Ons ---`,
       `Items: ${data['add-ons'] || 'None'}`,
       `Add-Ons Total: ${data['add-ons-total'] || '$0'}`,
+      `\n--- Payment ---`,
+      `Grand Total: ${data['grand-total'] || data['price'] || 'N/A'}`,
     ].join('\n');
 
     // Use Netlify's built-in email via fetch to Mailgun/Sendgrid if configured,

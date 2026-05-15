@@ -1054,6 +1054,7 @@
         <input type="hidden" name="kids-chairs" value="">
         <input type="hidden" name="add-ons" value="">
         <input type="hidden" name="add-ons-total" value="">
+        <input type="hidden" name="grand-total" value="">
     </form>
 
     <!-- Booking Date Modal -->
@@ -1127,6 +1128,10 @@
                 <h4>Selected Add-Ons</h4>
                 <div id="modalAddOnsList" style="color: #5A7388; font-size: 0.95rem; line-height: 1.8;"></div>
                 <p style="font-weight: 600; color: #1F4368; margin-top: 8px;" id="modalAddOnsTotal"></p>
+            </div>
+
+            <div id="modalGrandTotal" class="address-section hidden" style="background: #f0f6fb; border-radius: 10px; padding: 16px; text-align: center;">
+                <p style="font-size: 1.2rem; font-weight: 700; color: #1F4368; margin: 0;" id="modalGrandTotalAmount"></p>
             </div>
 
             <div class="modal-actions">
@@ -1221,15 +1226,21 @@
 
             // Show add-ons summary in modal
             var summary = getAddOnsSummary();
+            var addOnsTotal = getAddOnsTotal();
             var modalSummary = document.getElementById('modalAddOnsSummary');
             var modalList = document.getElementById('modalAddOnsList');
             var modalTotal = document.getElementById('modalAddOnsTotal');
+            var grandTotalEl = document.getElementById('modalGrandTotal');
+            var grandTotalAmount = document.getElementById('modalGrandTotalAmount');
             if (summary.length > 0) {
                 modalList.innerHTML = summary.join('<br>');
-                modalTotal.textContent = 'Add-Ons Total: $' + getAddOnsTotal();
+                modalTotal.textContent = 'Add-Ons Total: $' + addOnsTotal;
                 modalSummary.classList.remove('hidden');
+                grandTotalAmount.textContent = 'Total Due: $' + (price + addOnsTotal).toLocaleString();
+                grandTotalEl.classList.remove('hidden');
             } else {
                 modalSummary.classList.add('hidden');
+                grandTotalEl.classList.add('hidden');
             }
 
             document.getElementById('bookingModal').classList.add('active');
@@ -1313,6 +1324,7 @@
             bookingData.append('kids-chairs', document.getElementById('bookingKidsChairs').value);
             bookingData.append('add-ons', getAddOnsSummary().join(', ') || 'None');
             bookingData.append('add-ons-total', '$' + getAddOnsTotal());
+            bookingData.append('grand-total', '$' + (bookedPrice + getAddOnsTotal()).toLocaleString());
 
             // Show loading state
             var confirmBtn = document.getElementById('modalConfirmBtn');
@@ -1327,11 +1339,20 @@
                 // Silently fail - booking still proceeds to payment
             });
 
-            // Redirect to the Square payment link for the selected package
+            // Redirect to the SwipeSimple payment link with total amount
             var paymentLink = squarePaymentLinks[bookedPackage];
             if (paymentLink) {
+                var addOnsTotal = getAddOnsTotal();
+                var grandTotal = bookedPrice + addOnsTotal;
+                var paymentUrl = paymentLink + '?amount=' + grandTotal.toFixed(2);
+                var description = bookedPackage + ' Package ($' + bookedPrice.toLocaleString() + ')';
+                var addOnsSummary = getAddOnsSummary();
+                if (addOnsSummary.length > 0) {
+                    description += ' + Add-Ons: ' + addOnsSummary.join(', ');
+                }
+                paymentUrl += '&description=' + encodeURIComponent(description);
                 closeBookingModal();
-                window.open(paymentLink, '_blank');
+                window.open(paymentUrl, '_blank');
             } else {
                 closeBookingModal();
                 alert('Thank you, ' + guestName + '! Your booking request for the ' + bookedPackage + ' package (' + formattedStart + ' - ' + formattedEnd + ') has been submitted. We will send a secure payment link to ' + guestEmail + ' shortly.');
