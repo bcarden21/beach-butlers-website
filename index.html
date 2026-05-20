@@ -1236,12 +1236,11 @@
                 modalList.innerHTML = summary.join('<br>');
                 modalTotal.textContent = 'Add-Ons Total: $' + addOnsTotal;
                 modalSummary.classList.remove('hidden');
-                grandTotalAmount.textContent = 'Total Due: $' + (price + addOnsTotal).toLocaleString();
-                grandTotalEl.classList.remove('hidden');
             } else {
                 modalSummary.classList.add('hidden');
-                grandTotalEl.classList.add('hidden');
             }
+            grandTotalAmount.textContent = 'Total Checkout: $' + (price + addOnsTotal).toLocaleString();
+            grandTotalEl.classList.remove('hidden');
 
             document.getElementById('bookingModal').classList.add('active');
         }
@@ -1345,12 +1344,13 @@
                 var addOnsTotal = getAddOnsTotal();
                 var grandTotal = bookedPrice + addOnsTotal;
                 var paymentUrl = paymentLink + '?amount=' + grandTotal.toFixed(2);
-                var description = bookedPackage + ' Package ($' + bookedPrice.toLocaleString() + ')';
+                var descParts = [bookedPackage + ' Package: $' + bookedPrice.toLocaleString()];
                 var addOnsSummary = getAddOnsSummary();
                 if (addOnsSummary.length > 0) {
-                    description += ' + Add-Ons: ' + addOnsSummary.join(', ');
+                    descParts.push('Add-Ons: ' + addOnsSummary.join(', '));
+                    descParts.push('Total Checkout: $' + grandTotal.toLocaleString());
                 }
-                paymentUrl += '&description=' + encodeURIComponent(description);
+                paymentUrl += '&description=' + encodeURIComponent(descParts.join(' | '));
                 closeBookingModal();
                 window.open(paymentUrl, '_blank');
             } else {
